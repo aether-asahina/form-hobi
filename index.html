@@ -3,29 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form Hobi</title>
+<title>Form Hobi - Emerald Edition</title>
 
 <style>
-/* MENGAMBIL BACKGROUND ANIMASI DARI KODE KEDUA */
+/* TEMA DEEP SEA & EMERALD - NYAMAN DI MATA */
 body {
-  background: linear-gradient(270deg, #0f172a, #312e81, #7c3aed, #1e1b4b);
+  background: linear-gradient(270deg, #020617, #0f172a, #064e3b, #020617);
   background-size: 600% 600%;
-  animation: gradientMove 10s ease infinite;
+  animation: gradientMove 25s ease infinite; /* Sangat lambat agar tenang */
   color: white;
-  font-family: Arial, sans-serif;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 40px 10px;
   position: relative;
   min-height: 100vh;
 }
 
-/* EFEK GLOW BACKGROUND */
+/* EFEK CAHAYA LEMBUT (Subtle Glow) */
 body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.4), transparent 40%),
-              radial-gradient(circle at 80% 80%, rgba(59,130,246,0.3), transparent 40%);
+  background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.1), transparent 30%),
+              radial-gradient(circle at 90% 90%, rgba(14, 165, 233, 0.1), transparent 30%);
   pointer-events: none;
   z-index: 0;
 }
@@ -43,39 +43,35 @@ body::before {
   z-index: 1;
 }
 
-/* progress bar */
+/* Progress bar warna Emerald */
 .progress {
   height: 6px;
-  background: #334155;
+  background: #1e293b;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #7c3aed, #4f46e5); /* Warna disesuaikan ke ungu */
+  background: linear-gradient(90deg, #10b981, #34d399);
   transition: 0.4s;
 }
 
-/* CARD DENGAN EFEK GLASSMORPHISM DARI KODE KEDUA */
+/* Card Glassmorphism yang lebih gelap agar teks jelas */
 .card {
-  background: rgba(30, 41, 59, 0.75);
-  backdrop-filter: blur(12px);
-  padding: 20px;
-  border-radius: 12px;
-  margin-bottom: 15px;
-  box-shadow: 0 0 15px rgba(0,0,0,0.4);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(8px);
+  padding: 24px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 
   opacity: 0;
   transform: translateY(20px);
-  animation: fadeUp 0.5s ease forwards;
-}
-
-.card:hover {
-  transform: translateY(-4px);
-  transition: .3s;
+  animation: fadeUp 0.6s ease forwards;
 }
 
 @keyframes fadeUp {
@@ -84,169 +80,135 @@ body::before {
 
 label {
   display:block;
-  margin-bottom:8px;
+  margin-bottom:10px;
+  font-weight: 500;
+  color: #94a3b8;
 }
 
 input[type="text"], textarea, select {
   width:100%;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  background:#334155;
+  padding:12px;
+  border: 1px solid #334155;
+  border-radius:10px;
+  background:#1e293b;
   color:white;
-  margin-top:5px;
+  box-sizing: border-box;
 }
 
 input:focus, textarea:focus, select:focus {
   outline:none;
-  box-shadow:0 0 0 2px #7c3aed; /* Fokus warna ungu */
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
-/* checkbox modern */
+/* Chip Hobi - Emerald Theme */
 .hobi-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+  margin-bottom: 10px;
 }
 
-.chip {
-  position: relative;
-  cursor: pointer;
-}
-
-.chip input {
-  display: none;
-}
-
+.chip { cursor: pointer; }
+.chip input { display: none; }
 .chip span {
   display: inline-block;
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: #334155;
-  transition: 0.2s;
+  padding: 10px 16px;
+  border-radius: 50px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  transition: 0.3s;
+  font-size: 14px;
 }
 
-/* KALO KEKLIK - Mengikuti tema ungu */
 .chip input:checked + span {
-  background: #7c3aed;
-  color: white;
-  transform: scale(1.05);
+  background: #10b981;
+  border-color: #10b981;
+  color: #020617; /* Teks gelap di bg terang agar kontras pas */
+  font-weight: bold;
 }
 
+/* Radio button style */
+input[type="radio"] {
+  accent-color: #10b981;
+  margin-right: 8px;
+}
+
+/* Button mewah */
 button {
   width:100%;
-  padding:10px;
+  padding:14px;
   border:none;
-  border-radius:8px;
-  background:linear-gradient(135deg, #7c3aed, #4f46e5);
-  color:white;
+  border-radius:10px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  color:#020617;
+  font-weight: bold;
+  font-size: 16px;
   cursor:pointer;
-  transition:.2s;
-  box-shadow: 0 0 12px rgba(124,58,237,0.4);
+  transition: 0.3s;
 }
 
-button:active {
-  transform:scale(.97);
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
 }
 
-.hidden {
-  display:none;
-}
+.hidden { display:none; }
 
 .status {
   text-align:center;
-  margin-top:10px;
-  color:#a78bfa;
+  margin-top:15px;
+  color:#34d399;
 }
 
-/* spinner */
+/* Spinner */
 .spinner {
   width:30px;
   height:30px;
-  border:4px solid #334155;
-  border-top:4px solid #7c3aed;
+  border:3px solid rgba(16, 185, 129, 0.1);
+  border-top:3px solid #10b981;
   border-radius:50%;
-  animation:spin 1s linear infinite;
+  animation:spin 0.8s linear infinite;
   margin:10px auto;
 }
 
-@keyframes spin {
-  to { transform:rotate(360deg); }
-}
+@keyframes spin { to { transform:rotate(360deg); } }
 
-#loading {
-  text-align:center;
-  margin-top:10px;
-}
-
-/* header - Mengikuti tema ungu */
+/* Header */
 .header {
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
-  padding: 25px;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  top: -50px;
-  right: -50px;
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 30px;
+  border-radius: 20px;
+  margin-bottom: 25px;
+  color: #020617; /* Teks gelap biar nyaman dibaca */
 }
 
 .header-content {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 15px;
+  gap: 20px;
 }
 
-.header-text {
-  flex: 1;
-}
+.header-text h1 { margin: 0; font-size: 22px; }
+.header-text p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; }
 
 .header-img {
-  width: 80px;
-  opacity: 0.9;
-  animation: float 3s ease-in-out infinite;
-}
-
-.sub {
-  font-size: 13px;
-  opacity: 0.8;
+  width: 70px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+  animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-
-@media (max-width: 500px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-  }
-  .header-img {
-    width: 60px;
-  }
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 .footer {
-  margin-top: 40px;
-  padding: 25px 15px;
   text-align: center;
+  padding: 30px;
   font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  border-top: 1px solid rgba(255,255,255,0.1);
+  color: #475569;
 }
-  
 </style>
 </head>
 
@@ -257,16 +219,8 @@ button:active {
 <div class="header">
   <div class="header-content">
     <div class="header-text">
-      <h1>
-        <span id="secretRocket" style="cursor: pointer;">🚀</span> Kenali Potensi Dirimu
-      </h1>
-      <p>
-        Data ini bakal bantu kami bikin event, komunitas, dan peluang 
-        yang sesuai sama minat kalian.
-      </p>
-      <p class="sub">
-        Isi dengan jujur ya — siapa tau dari hobi bisa jadi peluang penghasilan
-      </p>
+      <h1><span id="secretRocket" style="cursor:pointer">🚀</span> Kenali Potensi Dirimu</h1>
+      <p>Bantu kami buat event & peluang yang cocok buat kamu.</p>
     </div>
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="header-img">
   </div>
@@ -279,60 +233,61 @@ button:active {
 <form id="formHobi">
 
 <div class="card">
-<label>Nama</label>
-<input id="nama" type="text" required>
+  <label>Nama Lengkap</label>
+  <input id="nama" type="text" placeholder="Masukkan nama..." required>
 </div>
 
 <div class="card">
-<label>Semester</label>
-<label><input type="radio" name="semester" value="2"> 2</label>
-<label><input type="radio" name="semester" value="4"> 4</label>
-<label><input type="radio" name="semester" value="6"> 6</label>
-<label><input type="radio" name="semester" value="8"> 8</label>
-</div>
-
-<div class="card">
-  <label>Hobi</label>
-  <div class="hobi-list">
-    <label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
-    <label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
-    <label class="chip"><input type="checkbox" name="hobi" value="Ngoding"><span>Ngoding</span></label>
-    <label class="chip"><input type="checkbox" name="hobi" value="Musik"><span>Musik</span></label>
-    <label class="chip"><input type="checkbox" name="hobi" value="Trading"><span>Trading</span></label>
-    <label class="chip"><input type="checkbox" name="hobi" value="Date with Ayang"><span>Date with Ayang</span></label>
+  <label>Semester</label>
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+    <label><input type="radio" name="semester" value="2"> 2</label>
+    <label><input type="radio" name="semester" value="4"> 4</label>
+    <label><input type="radio" name="semester" value="6"> 6</label>
+    <label><input type="radio" name="semester" value="8"> 8</label>
   </div>
+</div>
 
-  <label class="chip" style="margin-top: 10px; display: inline-block;">
+<div class="card">
+  <label>Pilih Hobi</label>
+  <div class="hobi-list">
+  <label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
+  <label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
+  <label class="chip"><input type="checkbox" name="hobi" value="Ngoding"><span>Ngoding</span></label>
+  <label class="chip"><input type="checkbox" name="hobi" value="Musik"><span>Musik</span></label>
+  <label class="chip"><input type="checkbox" name="hobi" value="Trading"><span>Trading</span></label>
+  <label class="chip"><input type="checkbox" name="hobi" value="Date with Ayang"><span>Date with Ayang</span></label>
+</div>
+
+  
+  <label class="chip" style="margin-top: 5px; display: inline-block;">
     <input type="checkbox" id="lainnyaCheck">
     <span>Lainnya</span>
   </label>
-  <input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
+  <input id="lainnyaInput" type="text" placeholder="Sebutkan hobi lain..." class="hidden" style="margin-top:10px">
 </div>
 
 <div class="card">
-<label>Minat ke depan</label>
-<select id="minat" required>
-<option value="">Pilih</option>
-<option value="Cuma hobi">Cuma hobi</option>
-<option value="Mau dikembangkan">Mau dikembangkan</option>
-<option value="Mau jadi penghasilan">Mau jadi penghasilan</option>
-</select>
+  <label>Minat ke Depan</label>
+  <select id="minat" required>
+    <option value="">Pilih Rencana</option>
+    <option value="Cuma hobi">Hanya sekedar hobi</option>
+    <option value="Mau dikembangkan">Ingin dikembangkan</option>
+    <option value="Mau jadi penghasilan">Ingin jadi penghasilan</option>
+  </select>
 </div>
 
 <div class="card">
-  <label>Tujuan (apa yang mau di capai dari hobi ini?)</label>
-<textarea id="tujuan" placeholder="Contoh: Mau jadi freelancer, ikut lomba, atau jadi penghasilan..."></textarea>
+  <label>Tujuan / Harapan</label>
+  <textarea id="tujuan" rows="3" placeholder="Apa yang ingin kamu capai?"></textarea>
 </div>
 
-<div class="card">
-<button id="submitBtn">Kirim</button>
-
-<div id="loading" class="hidden">
-<div class="spinner"></div>
-<p>Ngirim data...</p>
-</div>
-
-<p id="status" class="status"></p>
+<div class="card" style="background: transparent; box-shadow: none; border: none; padding: 0;">
+  <button id="submitBtn">Kirim Data</button>
+  <div id="loading" class="hidden">
+    <div class="spinner"></div>
+    <p style="text-align:center; font-size:14px; color:#10b981">Memproses data...</p>
+  </div>
+  <p id="status" class="status"></p>
 </div>
 
 </form>
@@ -340,7 +295,7 @@ button:active {
 </div>
 
 <footer class="footer">
-  <p>© 2026 Form Hobi • Dibuat oleh Divisi Development</p>
+  © 2026 Form Hobi • Divisi Development
 </footer>
 
 <script type="module">
@@ -357,24 +312,21 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const form = document.getElementById("formHobi");
-const status = document.getElementById("status");
 const loading = document.getElementById("loading");
 const button = document.getElementById("submitBtn");
 const lainnyaCheck = document.getElementById("lainnyaCheck");
 const lainnyaInput = document.getElementById("lainnyaInput");
 
-// toggle lainnya
+// Toggle input hobi lainnya
 lainnyaCheck.addEventListener("change", () => {
   lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
   if (lainnyaCheck.checked) lainnyaInput.focus();
-  else lainnyaInput.value = "";
 });
 
-// progress bar
+// Update progress bar
 const inputs = document.querySelectorAll("input, textarea, select");
 function updateProgress() {
   let filled = 0;
-  // Sederhanakan logika progress: hitung field yang ada isinya
   if(document.getElementById("nama").value) filled++;
   if(document.querySelector('input[name="semester"]:checked')) filled++;
   if(document.querySelector('input[name="hobi"]:checked') || lainnyaCheck.checked) filled++;
@@ -384,28 +336,22 @@ function updateProgress() {
   const percent = (filled / 5) * 100;
   document.getElementById("progressBar").style.width = percent + "%";
 }
-inputs.forEach(i => i.addEventListener("change", updateProgress));
 inputs.forEach(i => i.addEventListener("input", updateProgress));
+inputs.forEach(i => i.addEventListener("change", updateProgress));
 
-// submit
+// Submit data
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const semester = document.querySelector('input[name="semester"]:checked')?.value;
-  if (!semester) return alert("Pilih semester");
+  if (!semester) return alert("Pilih semester dulu ya");
 
-  let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked'))
-    .map(el => el.value);
-
-  if (lainnyaCheck.checked && lainnyaInput.value.trim() !== "") {
-    hobi.push(lainnyaInput.value);
-  }
-
-  if (hobi.length === 0) return alert("Pilih hobi");
+  let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked')).map(el => el.value);
+  if (lainnyaCheck.checked && lainnyaInput.value) hobi.push(lainnyaInput.value);
+  if (hobi.length === 0) return alert("Pilih minimal satu hobi");
 
   loading.classList.remove("hidden");
-  button.disabled = true;
-  button.innerText = "Loading...";
+  button.classList.add("hidden");
 
   try {
     await addDoc(collection(db, "hobi"), {
@@ -417,18 +363,16 @@ form.addEventListener("submit", async (e) => {
       waktu: new Date()
     });
     
-    status.innerText = "Terkirim 🚀";
-    setTimeout(() => {
-      window.location.href = "thanks.html";
-    }, 1500);
+    document.getElementById("status").innerText = "Berhasil Terkirim! 🚀";
+    setTimeout(() => window.location.href = "thanks.html", 1500);
   } catch (err) {
-    alert("Gagal mengirim data");
-    button.disabled = false;
-    button.innerText = "Kirim";
+    alert("Waduh, gagal kirim. Coba lagi ya.");
+    loading.classList.add("hidden");
+    button.classList.remove("hidden");
   }
 });
 
-// secret admin
+// Secret Admin
 let clickCount = 0;
 document.getElementById("secretRocket").addEventListener("click", () => {
   clickCount++;
