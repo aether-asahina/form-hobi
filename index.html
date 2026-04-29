@@ -124,17 +124,56 @@ button:disabled {
   text-align:center;
   margin-top:10px;
 }
+
+  .header {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* glow effect */
+.header::before {
+  content: "";
+  position: absolute;
+  width: 200px;
+  height: 200px;
+  background: rgba(255,255,255,0.1);
+  border-radius: 50%;
+  top: -50px;
+  right: -50px;
+}
+
+/* text */
+.header h1 {
+  margin: 0;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.header p {
+  margin-top: 10px;
+  font-size: 14px;
+  color: rgba(255,255,255,0.9);
+}
+  .header {
+  animation: fadeUp 0.6s ease;
+  }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-
-  <div class="card">
-    <h2>📝 Form Hobi Anggota</h2>
-    <p>Isi data dengan santai </p>
-  </div>
+      <div class="header">
+  <h1>🚀 Kenali Potensi Dirimu</h1>
+  <p>
+    Isi form ini buat lihat arah minat & peluang lo ke depan.<br>
+    Siapa tau dari hobi bisa jadi cuan 😏
+  </p>
+      </div>
 
   <form id="formHobi">
 
