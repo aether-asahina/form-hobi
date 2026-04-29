@@ -164,6 +164,45 @@ button:active {
 #secretRocket {
   cursor: default;
 }
+  .header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.header-text {
+  flex: 1;
+}
+
+.header-img {
+  width: 80px;
+  opacity: 0.9;
+  animation: float 3s ease-in-out infinite;
+}
+
+.sub {
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* biar mobile tetap enak */
+@media (max-width: 500px) {
+  .header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .header-img {
+    width: 60px;
+  }
+}
 </style>
 </head>
 
@@ -172,8 +211,26 @@ button:active {
 <div class="container">
 
 <div class="header">
-<h1><span id="secretRocket">🚀</span> Kenali Potensi Dirimu</h1>
-<p>Isi form ini buat lihat arah minat & peluang dirimu ke depan </p>
+  <div class="header-content">
+    
+    <div class="header-text">
+      <h1>
+        <span id="secretRocket">🚀</span> Kenali Potensi Dirimu
+      </h1>
+
+      <p>
+        Data ini bakal bantu kami bikin event, komunitas, dan peluang 
+        yang sesuai sama minat kalian.
+      </p>
+
+      <p class="sub">
+        Isi dengan jujur ya — siapa tau dari hobi bisa jadi peluang penghasilan
+      </p>
+    </div>
+
+    <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="header-img">
+
+  </div>
 </div>
 
 <!-- progress -->
