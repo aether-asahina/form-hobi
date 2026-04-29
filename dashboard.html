@@ -2,44 +2,213 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
-<title>Dashboard Data</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+body {
+  background:#0f172a;
+  color:white;
+  font-family:sans-serif;
+  margin:0;
+  padding:20px;
+}
+
+.container {
+  max-width:700px;
+  margin:auto;
+}
+
+.card {
+  background:#1e293b;
+  padding:15px;
+  border-radius:10px;
+  margin-bottom:10px;
+}
+
+input {
+  width:100%;
+  padding:10px;
+  margin-bottom:10px;
+  border-radius:8px;
+  border:none;
+}
+
+button {
+  padding:8px 12px;
+  border:none;
+  border-radius:6px;
+  background:#22c55e;
+  color:white;
+  cursor:pointer;
+}
+
+.delete {
+  background:red;
+}
+
+.hidden {
+  display:none;
+}
+</style>
 </head>
 
-<body style="background:#0f172a;color:white;font-family:sans-serif">
+<body>
 
-<h2>📊 Data Hobi Anggota</h2>
+<div class="container">
 
-<div id="list"></div>
+  <!-- LOGIN -->
+  <div id="loginBox" class="card">
+    <h3>🔐 Login Admin</h3>
+    <input id="email" placeholder="Email">
+    <input id="password" type="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+  </div>
+
+  <!-- DASHBOARD -->
+  <div id="dashboard" class="hidden">
+
+    <div class="card">
+      <h2>📊 Dashboard Hobi</h2>
+      <input id="search" placeholder="Cari nama...">
+    </div>
+
+    <div class="card">
+      <canvas id="chart"></canvas>
+    </div>
+
+    <div id="list"></div>
+
+  </div>
+
+</div>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+import {
+  getFirestore,
+  collection,
+  onSnapshot,
+  deleteDoc,
+  doc
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const firebaseConfig = {
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+  const firebaseConfig = {
   apiKey: "AIzaSyAfw2aw4kZkFgBnzRs4aBpDOomrNnD5JcM",
   authDomain: "hobi-c4dca.firebaseapp.com",
-  projectId: "hobi-c4dca",
-};
-
+  projectId: "hobi-c4dca",}
+;
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
+const auth = getAuth(app);
 
 const list = document.getElementById("list");
+const searchInput = document.getElementById("search");
 
-const querySnapshot = await getDocs(collection(db, "hobi"));
+let chart;
+let allData = [];
 
-querySnapshot.forEach((doc) => {
-  const data = doc.data();
+// LOGIN
+window.login = async () => {
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
 
-  list.innerHTML += `
-    <div style="margin-bottom:10px;padding:10px;background:#1e293b;border-radius:8px">
-      <b>${data.nama}</b> (Semester ${data.semester})<br>
-      Hobi: ${data.hobi.join(", ")}<br>
-      Minat: ${data.minat}<br>
-      Tujuan: ${data.tujuan}
-    </div>
-  `;
+  await signInWithEmailAndPassword(auth, email, password);
+};
+
+// CEK LOGIN
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    document.getElementById("loginBox").classList.add("hidden");
+    document.getElementById("dashboard").classList.remove("hidden");
+    loadData();
+  }
 });
+
+// LOAD DATA REALTIME
+function loadData() {
+  onSnapshot(collection(db, "hobi"), (snapshot) => {
+    allData = [];
+    snapshot.forEach(docSnap => {
+      allData.push({ id: docSnap.id, ...docSnap.data() });
+    });
+
+    render(allData);
+    renderChart(allData);
+  });
+}
+
+// SEARCH
+searchInput.addEventListener("input", () => {
+  const keyword = searchInput.value.toLowerCase();
+
+  const filtered = allData.filter(d =>
+    d.nama.toLowerCase().includes(keyword)
+  );
+
+  render(filtered);
+});
+
+// RENDER LIST
+function render(data) {
+  list.innerHTML = "";
+
+  data.forEach(d => {
+    const div = document.createElement("div");
+    div.className = "card";
+
+    div.innerHTML = `
+      <b>${d.nama}</b> (S${d.semester})<br>
+      Hobi: ${d.hobi.join(", ")}<br>
+      Minat: ${d.minat}<br>
+      <button class="delete" onclick="hapus('${d.id}')">Hapus</button>
+    `;
+
+    list.appendChild(div);
+  });
+}
+
+// DELETE
+window.hapus = async (id) => {
+  if (confirm("Hapus data?")) {
+    await deleteDoc(doc(db, "hobi", id));
+  }
+};
+
+// CHART
+function renderChart(data) {
+  const count = {};
+
+  data.forEach(d => {
+    d.hobi.forEach(h => {
+      count[h] = (count[h] || 0) + 1;
+    });
+  });
+
+  const labels = Object.keys(count);
+  const values = Object.values(count);
+
+  if (chart) chart.destroy();
+
+  chart = new Chart(document.getElementById("chart"), {
+    type: "bar",
+    data: {
+      labels,
+      datasets: [{
+        label: "Jumlah Hobi",
+        data: values
+      }]
+    }
+  });
+}
 </script>
 
 </body>
