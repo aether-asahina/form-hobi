@@ -219,6 +219,7 @@ function render(data) {
       <b>${d.nama}</b> (S${d.semester})<br>
       Hobi: ${d.hobi.join(", ")}<br>
       Minat: ${d.minat}<br>
+      Tujuan: <i>${d.tujuan?.slice(0,100) || "-"}</i>...
       <button class="delete" onclick="hapus('${d.id}')">Hapus</button>
     `;
 
