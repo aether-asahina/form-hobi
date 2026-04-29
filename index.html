@@ -232,6 +232,9 @@ button:active {
   color: white;
   transform: scale(1.05);
 }
+  #lainnyaInput:focus {
+  box-shadow: 0 0 0 2px #22c55e;
+}
 </style>
 </head>
 
@@ -317,12 +320,13 @@ button:active {
     </label>
   </div>
 
-  <label>
-    <input type="checkbox" id="lainnyaCheck"> Lainnya
-  </label>
-  <input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
-</div>
+  <label class="chip">
+  <input type="checkbox" id="lainnyaCheck">
+  <span>Lainnya</span>
+</label>
 
+<input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
+</div>
 <div class="card">
 <label>Minat ke depan</label>
 <select id="minat" required>
@@ -376,7 +380,23 @@ const lainnyaInput = document.getElementById("lainnyaInput");
 
 // toggle lainnya
 lainnyaCheck.addEventListener("change", () => {
-  lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
+  const isChecked = lainnyaCheck.checked;
+
+  lainnyaInput.classList.toggle("hidden", !isChecked);
+
+  if (isChecked) {
+    lainnyaInput.focus(); // auto fokus
+  } else {
+    lainnyaInput.value = ""; // reset kalau dimatiin
+  }
+});
+
+// BONUS: kalau user mulai ngetik → auto centang
+lainnyaInput.addEventListener("input", () => {
+  if (lainnyaInput.value.trim() !== "") {
+    lainnyaCheck.checked = true;
+    lainnyaInput.classList.remove("hidden");
+  }
 });
 
 // checkbox UI
