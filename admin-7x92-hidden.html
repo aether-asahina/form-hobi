@@ -118,6 +118,11 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
+// 🚫 PAKSA LOGOUT SETIAP BUKA (BIAR GAK KE-SKIP)
+window.addEventListener("load", () => {
+  signOut(auth);
+});
+
 const list = document.getElementById("list");
 const searchInput = document.getElementById("search");
 
@@ -141,12 +146,21 @@ window.logout = () => {
   signOut(auth);
 };
 
-// CEK LOGIN (INI YANG PENTING)
+// 🔐 CEK LOGIN + BATASI EMAIL
 onAuthStateChanged(auth, (user) => {
   if (user) {
+
+    // 👉 ganti email ini sama email lu
+    if (user.email !== "azkylyss@gmail.com") {
+      alert("Lu bukan admin 😹");
+      signOut(auth);
+      return;
+    }
+
     document.getElementById("loginBox").classList.add("hidden");
     document.getElementById("dashboard").classList.remove("hidden");
     loadData();
+
   } else {
     document.getElementById("loginBox").classList.remove("hidden");
     document.getElementById("dashboard").classList.add("hidden");
