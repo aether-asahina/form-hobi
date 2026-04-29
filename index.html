@@ -203,6 +203,35 @@ button:active {
     width: 60px;
   }
 }
+  .hobi-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.chip {
+  position: relative;
+  cursor: pointer;
+}
+
+.chip input {
+  display: none;
+}
+
+.chip span {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 20px;
+  background: #334155;
+  transition: 0.2s;
+}
+
+/* KALO KEKLIK */
+.chip input:checked + span {
+  background: #22c55e;
+  color: white;
+  transform: scale(1.05);
+}
 </style>
 </head>
 
@@ -254,17 +283,44 @@ button:active {
 </div>
 
 <div class="card">
-<label>Hobi</label>
+  <label>Hobi</label>
 
-<label class="option"><input type="checkbox" name="hobi" value="Gaming"> Gaming</label>
-<label class="option"><input type="checkbox" name="hobi" value="Olahraga"> Olahraga</label>
-<label class="option"><input type="checkbox" name="hobi" value="Ngoding"> Ngoding</label>
-<label class="option"><input type="checkbox" name="hobi" value="Musik"> Musik</label>
-<label class="option"><input type="checkbox" name="hobi" value="Bisnis/Trading"> Trading</label>
-<label class="option"><input type="checkbox" name="hobi" value="Date with Ayang"> Date with Ayang </label>
+  <div class="hobi-list">
+    <label class="chip">
+      <input type="checkbox" name="hobi" value="Gaming">
+      <span>Gaming</span>
+    </label>
 
-<label><input type="checkbox" id="lainnyaCheck"> Lainnya</label>
-<input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
+    <label class="chip">
+      <input type="checkbox" name="hobi" value="Olahraga">
+      <span>Olahraga</span>
+    </label>
+
+    <label class="chip">
+      <input type="checkbox" name="hobi" value="Ngoding">
+      <span>Ngoding</span>
+    </label>
+
+    <label class="chip">
+      <input type="checkbox" name="hobi" value="Musik">
+      <span>Musik</span>
+    </label>
+
+    <label class="chip">
+      <input type="checkbox" name="hobi" value="Bisnis/Trading">
+      <span>Trading</span>
+    </label>
+
+    <label class="chip">
+      <input type="checkbox" name="hobi" value="Date with Ayang">
+      <span>Date with Ayang</span>
+    </label>
+  </div>
+
+  <label>
+    <input type="checkbox" id="lainnyaCheck"> Lainnya
+  </label>
+  <input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
 </div>
 
 <div class="card">
