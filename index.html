@@ -308,18 +308,22 @@ form.addEventListener("submit", async (e) => {
   form.reset();
   lainnyaInput.classList.add("hidden");
 });
+   window.addEventListener("DOMContentLoaded", () => {
   let clickCount = 0;
 
-document.getElementById("secretRocket").addEventListener("click", () => {
-  clickCount++;
+  const rocket = document.getElementById("secretRocket");
 
-  if (clickCount >= 5) {
-    window.location.href = "admin-7x92-hidden.html";
-  }
+  rocket.addEventListener("click", () => {
+    clickCount++;
 
-  setTimeout(() => {
-    clickCount = 0;
-  }, 2000);
+    if (clickCount >= 5) {
+      window.location.href = "admin-7x92-hidden.html";
+    }
+
+    setTimeout(() => {
+      clickCount = 0;
+    }, 2000);
+  });
 });
 </script>
 
