@@ -7,11 +7,27 @@
 
 <style>
 body {
-  background: #0f172a;
+  background: linear-gradient(270deg, #0f172a, #1e1b4b, #312e81);
+  background-size: 600% 600%;
+  animation: gradientMove 12s ease infinite;
   color: white;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 40px 10px;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at top right, rgba(124,58,237,0.25), transparent 40%);
+  pointer-events: none;
 }
 
 .container {
@@ -19,7 +35,7 @@ body {
   margin: auto;
 }
 
-/* progress bar */
+/* progress */
 .progress {
   height: 6px;
   background: #334155;
@@ -31,16 +47,18 @@ body {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #22c55e, #4ade80);
+  background: linear-gradient(90deg, #7c3aed, #a78bfa);
   transition: 0.4s;
 }
 
+/* card glass */
 .card {
-  background: #1e293b;
+  background: rgba(30, 41, 59, 0.75);
+  backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 15px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  box-shadow: 0 0 15px rgba(0,0,0,0.4);
 
   opacity: 0;
   transform: translateY(20px);
@@ -73,145 +91,14 @@ input[type="text"], textarea, select {
 
 input:focus, textarea:focus, select:focus {
   outline:none;
-  box-shadow:0 0 0 2px #22c55e;
+  box-shadow:0 0 0 2px #7c3aed;
 }
 
-/* checkbox modern */
-.option {
-  display:inline-block;
-  padding:8px 12px;
-  border-radius:20px;
-  background:#334155;
-  margin:5px 5px 0 0;
-  cursor:pointer;
-  transition:0.2s;
-}
-
-.option input {
-  display:none;
-}
-
-.option.active {
-  background:#22c55e;
-}
-
-button {
-  width:100%;
-  padding:10px;
-  border:none;
-  border-radius:8px;
-  background:linear-gradient(135deg, #22c55e, #16a34a);
-  color:white;
-  cursor:pointer;
-  transition:.2s;
-}
-
-button:active {
-  transform:scale(.97);
-}
-
-.hidden {
-  display:none;
-}
-
-.status {
-  text-align:center;
-  margin-top:10px;
-  color:#4ade80;
-}
-
-/* spinner */
-.spinner {
-  width:30px;
-  height:30px;
-  border:4px solid #334155;
-  border-top:4px solid #22c55e;
-  border-radius:50%;
-  animation:spin 1s linear infinite;
-  margin:10px auto;
-}
-
-@keyframes spin {
-  to { transform:rotate(360deg); }
-}
-
-#loading {
-  text-align:center;
-  margin-top:10px;
-}
-
-/* header */
-.header {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  padding: 25px;
-  border-radius: 16px;
-  margin-bottom: 20px;
-  position: relative;
-  overflow: hidden;
-}
-
-.header::before {
-  content: "";
-  position: absolute;
-  width: 200px;
-  height: 200px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 50%;
-  top: -50px;
-  right: -50px;
-}
-
-#secretRocket {
-  cursor: default;
-}
-  .header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-}
-
-.header-text {
-  flex: 1;
-}
-
-.header-img {
-  width: 80px;
-  opacity: 0.9;
-  animation: float 3s ease-in-out infinite;
-}
-
-.sub {
-  font-size: 13px;
-  opacity: 0.8;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
-}
-
-/* biar mobile tetap enak */
-@media (max-width: 500px) {
-  .header-content {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .header-img {
-    width: 60px;
-  }
-}
-  .hobi-list {
+/* chip */
+.hobi-list {
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
-}
-
-.chip {
-  position: relative;
-  cursor: pointer;
 }
 
 .chip input {
@@ -224,24 +111,86 @@ button:active {
   border-radius: 20px;
   background: #334155;
   transition: 0.2s;
+  cursor: pointer;
 }
 
-/* KALO KEKLIK */
 .chip input:checked + span {
-  background: #22c55e;
-  color: white;
+  background: #7c3aed;
   transform: scale(1.05);
 }
-  #lainnyaInput:focus {
-  box-shadow: 0 0 0 2px #22c55e;
-}
-  .footer {
-  margin-top: 40px;
-  background: #020617;
-  padding: 25px 15px 15px;
-  border-top: 1px solid #1e293b;
+
+/* button */
+button {
+  width:100%;
+  padding:10px;
+  border:none;
+  border-radius:8px;
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  color:white;
+  cursor:pointer;
+  transition:.2s;
+  box-shadow: 0 0 12px rgba(124,58,237,0.4);
 }
 
+button:hover {
+  opacity: 0.9;
+}
+
+button:active {
+  transform:scale(.97);
+}
+
+/* spinner */
+.spinner {
+  width:30px;
+  height:30px;
+  border:4px solid #334155;
+  border-top:4px solid #7c3aed;
+  border-radius:50%;
+  animation:spin 1s linear infinite;
+  margin:10px auto;
+}
+
+@keyframes spin {
+  to { transform:rotate(360deg); }
+}
+
+.hidden {
+  display:none;
+}
+
+.status {
+  text-align:center;
+  margin-top:10px;
+  color:#a78bfa;
+}
+
+/* header */
+.header {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  padding: 25px;
+  border-radius: 16px;
+  margin-bottom: 20px;
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-img {
+  width: 70px;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0px); }
+}
+
+/* footer */
 .footer {
   margin-top: 30px;
   padding: 15px;
@@ -250,7 +199,6 @@ button:active {
   color: rgba(255,255,255,0.6);
   border-top: 1px solid #1e293b;
 }
-  
 </style>
 </head>
 
@@ -260,28 +208,16 @@ button:active {
 
 <div class="header">
   <div class="header-content">
-    
-    <div class="header-text">
-      <h1>
-        <span id="secretRocket">🚀</span> Kenali Potensi Dirimu
-      </h1>
-
-      <p>
-        Data ini bakal bantu kami bikin event, komunitas, dan peluang 
-        yang sesuai sama minat kalian.
-      </p>
-
-      <p class="sub">
-        Isi dengan jujur ya — siapa tau dari hobi bisa jadi peluang penghasilan
+    <div>
+      <h2><span id="secretRocket">🚀</span> Kenali Potensi Dirimu</h2>
+      <p style="font-size:13px;opacity:0.8;">
+        Data ini bantu kami bikin event & peluang sesuai minat kalian
       </p>
     </div>
-
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="header-img">
-
   </div>
 </div>
 
-<!-- progress -->
 <div class="progress">
   <div class="progress-bar" id="progressBar"></div>
 </div>
@@ -302,60 +238,37 @@ button:active {
 </div>
 
 <div class="card">
-  <label>Hobi</label>
+<label>Hobi</label>
 
-  <div class="hobi-list">
-    <label class="chip">
-      <input type="checkbox" name="hobi" value="Gaming">
-      <span>Gaming</span>
-    </label>
+<div class="hobi-list">
+<label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
+<label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
+<label class="chip"><input type="checkbox" name="hobi" value="Ngoding"><span>Ngoding</span></label>
+<label class="chip"><input type="checkbox" name="hobi" value="Musik"><span>Musik</span></label>
+<label class="chip"><input type="checkbox" name="hobi" value="Trading"><span>Trading</span></label>
+</div>
 
-    <label class="chip">
-      <input type="checkbox" name="hobi" value="Olahraga">
-      <span>Olahraga</span>
-    </label>
-
-    <label class="chip">
-      <input type="checkbox" name="hobi" value="Ngoding">
-      <span>Ngoding</span>
-    </label>
-
-    <label class="chip">
-      <input type="checkbox" name="hobi" value="Musik">
-      <span>Musik</span>
-    </label>
-
-    <label class="chip">
-      <input type="checkbox" name="hobi" value="Bisnis/Trading">
-      <span>Trading</span>
-    </label>
-
-    <label class="chip">
-      <input type="checkbox" name="hobi" value="Date with Ayang">
-      <span>Date with Ayang</span>
-    </label>
-  </div>
-
-  <label class="chip">
-  <input type="checkbox" id="lainnyaCheck">
-  <span>Lainnya</span>
+<label class="chip">
+<input type="checkbox" id="lainnyaCheck">
+<span>Lainnya</span>
 </label>
 
 <input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
 </div>
+
 <div class="card">
-<label>Minat ke depan</label>
+<label>Minat</label>
 <select id="minat" required>
 <option value="">Pilih</option>
-<option value="Cuma hobi">Cuma hobi</option>
-<option value="Mau dikembangkan">Mau dikembangkan</option>
-<option value="Mau jadi penghasilan">Mau jadi penghasilan</option>
+<option>Cuma hobi</option>
+<option>Mau dikembangkan</option>
+<option>Jadi penghasilan</option>
 </select>
 </div>
 
 <div class="card">
-  <label>Tujuan (apa yang mau di capai dari hobi ini?)</label>
-<textarea id="tujuan" placeholder="Contoh: Mau jadi freelancer, ikut lomba, atau jadi penghasilan..."></textarea>
+<label>Tujuan</label>
+<textarea id="tujuan"></textarea>
 </div>
 
 <div class="card">
@@ -363,7 +276,7 @@ button:active {
 
 <div id="loading" class="hidden">
 <div class="spinner"></div>
-<p>Ngirim data...</p>
+<p>Ngirim...</p>
 </div>
 
 <p id="status" class="status"></p>
@@ -373,133 +286,57 @@ button:active {
 
 </div>
 
+<footer class="footer">
+© 2026 Form Hobi • Ketua 🚀
+</footer>
+
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAfw2aw4kZkFgBnzRs4aBpDOomrNnD5JcM",
+const app = initializeApp({
+  apiKey: "AIza...",
   authDomain: "hobi-c4dca.firebaseapp.com",
   projectId: "hobi-c4dca",
-};
-
-const app = initializeApp(firebaseConfig);
+});
 const db = getFirestore(app);
 
 const form = document.getElementById("formHobi");
-const status = document.getElementById("status");
 const loading = document.getElementById("loading");
 const button = document.getElementById("submitBtn");
 
 const lainnyaCheck = document.getElementById("lainnyaCheck");
 const lainnyaInput = document.getElementById("lainnyaInput");
 
-// toggle lainnya
-lainnyaCheck.addEventListener("change", () => {
-  const isChecked = lainnyaCheck.checked;
+lainnyaCheck.onchange = () => {
+  lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
+};
 
-  lainnyaInput.classList.toggle("hidden", !isChecked);
-
-  if (isChecked) {
-    lainnyaInput.focus(); // auto fokus
-  } else {
-    lainnyaInput.value = ""; // reset kalau dimatiin
-  }
-});
-
-// BONUS: kalau user mulai ngetik → auto centang
-lainnyaInput.addEventListener("input", () => {
-  if (lainnyaInput.value.trim() !== "") {
-    lainnyaCheck.checked = true;
-    lainnyaInput.classList.remove("hidden");
-  }
-});
-
-// checkbox UI
-document.querySelectorAll(".option").forEach(el => {
-  el.addEventListener("click", () => {
-    el.classList.toggle("active");
-  });
-});
-
-// progress bar
-const inputs = document.querySelectorAll("input, textarea, select");
-
-function updateProgress() {
-  let filled = 0;
-
-  inputs.forEach(i => {
-    if ((i.type === "checkbox" || i.type === "radio")) {
-      if (i.checked) filled++;
-    } else if (i.value) {
-      filled++;
-    }
-  });
-
-  const percent = (filled / inputs.length) * 100;
-  document.getElementById("progressBar").style.width = percent + "%";
-}
-
-inputs.forEach(i => i.addEventListener("change", updateProgress));
-
-// submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const semester = document.querySelector('input[name="semester"]:checked')?.value;
-  if (!semester) return alert("Pilih semester");
-
-  let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked'))
+  let hobi = [...document.querySelectorAll('input[name="hobi"]:checked')]
     .map(el => el.value);
 
-  if (lainnyaCheck.checked && lainnyaInput.value.trim() !== "") {
+  if (lainnyaCheck.checked && lainnyaInput.value) {
     hobi.push(lainnyaInput.value);
   }
 
-  if (hobi.length === 0) return alert("Pilih hobi");
-
   loading.classList.remove("hidden");
   button.disabled = true;
-  button.innerText = "Loading...";
 
-  await addDoc(collection(db, "hobi"), {
-    nama: document.getElementById("nama").value,
-    semester,
+  await addDoc(collection(db,"hobi"), {
+    nama: nama.value,
+    semester: document.querySelector('input[name="semester"]:checked')?.value,
     hobi,
-    minat: document.getElementById("minat").value,
-    tujuan: document.getElementById("tujuan").value,
+    minat: minat.value,
+    tujuan: tujuan.value,
     waktu: new Date()
   });
 
-  loading.classList.add("hidden");
-  button.disabled = false;
-  button.innerText = "Kirim";
-
-  status.innerText = "Terkirim 🚀";
-
-  setTimeout(() => {
-    window.location.href = "thanks.html";
-  }, 1500);
-
-  form.reset();
-});
-
-// secret admin
-window.addEventListener("DOMContentLoaded", () => {
-  let clickCount = 0;
-  const rocket = document.getElementById("secretRocket");
-
-  rocket.addEventListener("click", () => {
-    clickCount++;
-    if (clickCount >= 5) {
-      window.location.href = "admin-7x92-hidden.html";
-    }
-    setTimeout(() => clickCount = 0, 2000);
-  });
+  setTimeout(()=> location.href="thanks.html",1500);
 });
 </script>
-<footer class="footer">
-  <p>© 2026 Form Hobi • Dibuat oleh Divisi Development</p>
-</footer>
+
 </body>
 </html>
