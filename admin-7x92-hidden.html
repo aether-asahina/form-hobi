@@ -49,6 +49,11 @@ button {
   background:red;
 }
 
+.logout {
+  background:#64748b;
+  float:right;
+}
+
 .hidden {
   display:none;
 }
@@ -72,6 +77,7 @@ button {
 
     <div class="card">
       <h2>📊 Dashboard Hobi</h2>
+      <button class="logout" onclick="logout()">Logout</button>
       <input id="search" placeholder="Cari nama...">
     </div>
 
@@ -98,14 +104,16 @@ import {
 import {
   getAuth,
   signInWithEmailAndPassword,
-  onAuthStateChanged
+  onAuthStateChanged,
+  signOut
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-  const firebaseConfig = {
+const firebaseConfig = {
   apiKey: "AIzaSyAfw2aw4kZkFgBnzRs4aBpDOomrNnD5JcM",
   authDomain: "hobi-c4dca.firebaseapp.com",
-  projectId: "hobi-c4dca",}
-;
+  projectId: "hobi-c4dca",
+};
+
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
@@ -121,15 +129,27 @@ window.login = async () => {
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
 
-  await signInWithEmailAndPassword(auth, email, password);
+  try {
+    await signInWithEmailAndPassword(auth, email, password);
+  } catch (err) {
+    alert("Login gagal 😅");
+  }
 };
 
-// CEK LOGIN
+// LOGOUT
+window.logout = () => {
+  signOut(auth);
+};
+
+// CEK LOGIN (INI YANG PENTING)
 onAuthStateChanged(auth, (user) => {
   if (user) {
     document.getElementById("loginBox").classList.add("hidden");
     document.getElementById("dashboard").classList.remove("hidden");
     loadData();
+  } else {
+    document.getElementById("loginBox").classList.remove("hidden");
+    document.getElementById("dashboard").classList.add("hidden");
   }
 });
 
