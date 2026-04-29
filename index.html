@@ -7,13 +7,25 @@
 
 <style>
 body {
-  background: linear-gradient(270deg, #0f172a, #1e1b4b, #312e81);
+  background: linear-gradient(270deg, #0f172a, #312e81, #7c3aed, #1e1b4b);
   background-size: 600% 600%;
-  animation: gradientMove 12s ease infinite;
+  animation: gradientMove 10s ease infinite;
   color: white;
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 40px 10px;
+  position: relative;
+}
+
+/* glow background */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(124,58,237,0.4), transparent 40%),
+              radial-gradient(circle at 80% 80%, rgba(59,130,246,0.3), transparent 40%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 @keyframes gradientMove {
@@ -22,17 +34,11 @@ body {
   100% { background-position: 0% 50%; }
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at top right, rgba(124,58,237,0.25), transparent 40%);
-  pointer-events: none;
-}
-
 .container {
   max-width: 500px;
   margin: auto;
+  position: relative;
+  z-index: 1;
 }
 
 /* progress */
@@ -47,14 +53,14 @@ body::before {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #7c3aed, #a78bfa);
+  background: linear-gradient(90deg, #7c3aed, #4f46e5);
   transition: 0.4s;
 }
 
 /* card glass */
 .card {
   background: rgba(30, 41, 59, 0.75);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   padding: 20px;
   border-radius: 12px;
   margin-bottom: 15px;
@@ -96,26 +102,26 @@ input:focus, textarea:focus, select:focus {
 
 /* chip */
 .hobi-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
 }
 
 .chip input {
-  display: none;
+  display:none;
 }
 
 .chip span {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 20px;
-  background: #334155;
-  transition: 0.2s;
-  cursor: pointer;
+  display:inline-block;
+  padding:8px 14px;
+  border-radius:20px;
+  background:#334155;
+  cursor:pointer;
+  transition:0.2s;
 }
 
 .chip input:checked + span {
-  background: #7c3aed;
+  background:#7c3aed;
   transform: scale(1.05);
 }
 
@@ -125,19 +131,23 @@ button {
   padding:10px;
   border:none;
   border-radius:8px;
-  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  background:linear-gradient(135deg, #7c3aed, #4f46e5);
   color:white;
   cursor:pointer;
-  transition:.2s;
   box-shadow: 0 0 12px rgba(124,58,237,0.4);
-}
-
-button:hover {
-  opacity: 0.9;
+  transition:.2s;
 }
 
 button:active {
   transform:scale(.97);
+}
+
+.hidden { display:none; }
+
+.status {
+  text-align:center;
+  margin-top:10px;
+  color:#a78bfa;
 }
 
 /* spinner */
@@ -155,16 +165,6 @@ button:active {
   to { transform:rotate(360deg); }
 }
 
-.hidden {
-  display:none;
-}
-
-.status {
-  text-align:center;
-  margin-top:10px;
-  color:#a78bfa;
-}
-
 /* header */
 .header {
   background: linear-gradient(135deg, #7c3aed, #4f46e5);
@@ -174,30 +174,27 @@ button:active {
 }
 
 .header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
 }
 
 .header-img {
-  width: 70px;
+  width:70px;
   animation: float 3s ease-in-out infinite;
 }
 
 @keyframes float {
-  0% { transform: translateY(0px); }
   50% { transform: translateY(-6px); }
-  100% { transform: translateY(0px); }
 }
 
 /* footer */
 .footer {
-  margin-top: 30px;
-  padding: 15px;
-  text-align: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.6);
-  border-top: 1px solid #1e293b;
+  margin-top:30px;
+  padding:15px;
+  text-align:center;
+  font-size:12px;
+  color:rgba(255,255,255,0.6);
 }
 </style>
 </head>
@@ -209,10 +206,8 @@ button:active {
 <div class="header">
   <div class="header-content">
     <div>
-      <h2><span id="secretRocket">🚀</span> Kenali Potensi Dirimu</h2>
-      <p style="font-size:13px;opacity:0.8;">
-        Data ini bantu kami bikin event & peluang sesuai minat kalian
-      </p>
+      <h1><span id="secretRocket">🚀</span> Kenali Potensi Dirimu</h1>
+      <p>Data ini bantu kami bikin event & peluang sesuai minat kalian</p>
     </div>
     <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" class="header-img">
   </div>
@@ -239,7 +234,6 @@ button:active {
 
 <div class="card">
 <label>Hobi</label>
-
 <div class="hobi-list">
 <label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
 <label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
@@ -258,11 +252,11 @@ button:active {
 
 <div class="card">
 <label>Minat</label>
-<select id="minat" required>
+<select id="minat">
 <option value="">Pilih</option>
 <option>Cuma hobi</option>
 <option>Mau dikembangkan</option>
-<option>Jadi penghasilan</option>
+<option>Mau jadi penghasilan</option>
 </select>
 </div>
 
@@ -273,12 +267,10 @@ button:active {
 
 <div class="card">
 <button id="submitBtn">Kirim</button>
-
 <div id="loading" class="hidden">
 <div class="spinner"></div>
 <p>Ngirim...</p>
 </div>
-
 <p id="status" class="status"></p>
 </div>
 
@@ -287,18 +279,20 @@ button:active {
 </div>
 
 <footer class="footer">
-© 2026 Form Hobi • Ketua 🚀
+© 2026 Form Hobi
 </footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-const app = initializeApp({
-  apiKey: "AIza...",
+const firebaseConfig = {
+  apiKey: "AIzaSyAfw2aw4kZkFgBnzRs4aBpDOomrNnD5JcM",
   authDomain: "hobi-c4dca.firebaseapp.com",
   projectId: "hobi-c4dca",
-});
+};
+
+const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 const form = document.getElementById("formHobi");
@@ -308,15 +302,18 @@ const button = document.getElementById("submitBtn");
 const lainnyaCheck = document.getElementById("lainnyaCheck");
 const lainnyaInput = document.getElementById("lainnyaInput");
 
-lainnyaCheck.onchange = () => {
+lainnyaCheck.addEventListener("change", () => {
   lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
-};
+  if (lainnyaCheck.checked) lainnyaInput.focus();
+});
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  let hobi = [...document.querySelectorAll('input[name="hobi"]:checked')]
-    .map(el => el.value);
+  const semester = document.querySelector('input[name="semester"]:checked')?.value;
+  if (!semester) return alert("Pilih semester");
+
+  let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked')).map(el => el.value);
 
   if (lainnyaCheck.checked && lainnyaInput.value) {
     hobi.push(lainnyaInput.value);
@@ -325,16 +322,16 @@ form.addEventListener("submit", async (e) => {
   loading.classList.remove("hidden");
   button.disabled = true;
 
-  await addDoc(collection(db,"hobi"), {
-    nama: nama.value,
-    semester: document.querySelector('input[name="semester"]:checked')?.value,
+  await addDoc(collection(db, "hobi"), {
+    nama: document.getElementById("nama").value,
+    semester,
     hobi,
-    minat: minat.value,
-    tujuan: tujuan.value,
+    minat: document.getElementById("minat").value,
+    tujuan: document.getElementById("tujuan").value,
     waktu: new Date()
   });
 
-  setTimeout(()=> location.href="thanks.html",1500);
+  setTimeout(()=> window.location.href="thanks.html", 1200);
 });
 </script>
 
