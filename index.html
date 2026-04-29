@@ -19,6 +19,22 @@ body {
   margin: auto;
 }
 
+/* progress bar */
+.progress {
+  height: 6px;
+  background: #334155;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #22c55e, #4ade80);
+  transition: 0.4s;
+}
+
 .card {
   background: #1e293b;
   padding: 20px;
@@ -31,20 +47,13 @@ body {
   animation: fadeUp 0.5s ease forwards;
 }
 
-.card:nth-child(1){animation-delay:.1s}
-.card:nth-child(2){animation-delay:.2s}
-.card:nth-child(3){animation-delay:.3s}
-.card:nth-child(4){animation-delay:.4s}
-.card:nth-child(5){animation-delay:.5s}
-.card:nth-child(6){animation-delay:.6s}
+.card:hover {
+  transform: translateY(-4px);
+  transition: .3s;
+}
 
 @keyframes fadeUp {
   to { opacity:1; transform:translateY(0); }
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  transition: .3s;
 }
 
 label {
@@ -67,8 +76,23 @@ input:focus, textarea:focus, select:focus {
   box-shadow:0 0 0 2px #22c55e;
 }
 
-input[type="radio"], input[type="checkbox"] {
-  margin-right:6px;
+/* checkbox modern */
+.option {
+  display:inline-block;
+  padding:8px 12px;
+  border-radius:20px;
+  background:#334155;
+  margin:5px 5px 0 0;
+  cursor:pointer;
+  transition:0.2s;
+}
+
+.option input {
+  display:none;
+}
+
+.option.active {
+  background:#22c55e;
 }
 
 button {
@@ -76,23 +100,14 @@ button {
   padding:10px;
   border:none;
   border-radius:8px;
-  background:#22c55e;
+  background:linear-gradient(135deg, #22c55e, #16a34a);
   color:white;
   cursor:pointer;
   transition:.2s;
 }
 
-button:hover {
-  background:#16a34a;
-}
-
 button:active {
   transform:scale(.97);
-}
-
-button:disabled {
-  opacity:0.6;
-  cursor:not-allowed;
 }
 
 .hidden {
@@ -125,7 +140,8 @@ button:disabled {
   margin-top:10px;
 }
 
-  .header {
+/* header */
+.header {
   background: linear-gradient(135deg, #22c55e, #16a34a);
   padding: 25px;
   border-radius: 16px;
@@ -134,7 +150,6 @@ button:disabled {
   overflow: hidden;
 }
 
-/* glow effect */
 .header::before {
   content: "";
   position: absolute;
@@ -146,96 +161,82 @@ button:disabled {
   right: -50px;
 }
 
-/* text */
-.header h1 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: bold;
+#secretRocket {
+  cursor: default;
 }
-
-.header p {
-  margin-top: 10px;
-  font-size: 14px;
-  color: rgba(255,255,255,0.9);
-}
-  .header {
-  animation: fadeUp 0.6s ease;
-  }
-  #secretRocket {
-  cursor: default; /* biar gak keliatan clickable */
-  }
 </style>
 </head>
 
 <body>
 
 <div class="container">
-      <div class="header">
-  <h1>
-  <span id="secretRocket">🚀</span> Kenali Potensi Dirimu
-  </h1>
-  <p>
-    Isi form ini buat lihat arah minat & peluang lo ke depan.<br>
-    Siapa tau dari hobi bisa jadi cuan 😏
-  </p>
-      </div>
 
-  <form id="formHobi">
+<div class="header">
+<h1><span id="secretRocket">🚀</span> Kenali Potensi Dirimu</h1>
+<p>Isi form ini buat lihat arah minat & peluang lo ke depan 😏</p>
+</div>
 
-    <div class="card">
-      <label>Nama</label>
-      <input id="nama" type="text" required>
-    </div>
+<!-- progress -->
+<div class="progress">
+  <div class="progress-bar" id="progressBar"></div>
+</div>
 
-    <div class="card">
-      <label>Semester</label>
-      <label><input type="radio" name="semester" value="2"> 2</label>
-      <label><input type="radio" name="semester" value="4"> 4</label>
-      <label><input type="radio" name="semester" value="6"> 6</label>
-      <label><input type="radio" name="semester" value="8"> 8</label>
-    </div>
+<form id="formHobi">
 
-    <div class="card">
-      <label>Hobi</label>
+<div class="card">
+<label>Nama</label>
+<input id="nama" type="text" required>
+</div>
 
-      <label><input type="checkbox" name="hobi" value="Gaming"> Gaming</label>
-      <label><input type="checkbox" name="hobi" value="Olahraga"> Olahraga</label>
-      <label><input type="checkbox" name="hobi" value="Ngoding"> Ngoding</label>
-      <label><input type="checkbox" name="hobi" value="Musik"> Musik</label>
-      <label><input type="checkbox" name="hobi" value="Bisnis/Trading"> Bisnis/Trading</label>
-      <label><input type="checkbox" name="hobi" value="Date with Ayang"> Date with Ayang</label>
+<div class="card">
+<label>Semester</label>
+<label><input type="radio" name="semester" value="2"> 2</label>
+<label><input type="radio" name="semester" value="4"> 4</label>
+<label><input type="radio" name="semester" value="6"> 6</label>
+<label><input type="radio" name="semester" value="8"> 8</label>
+</div>
 
-      <label><input type="checkbox" id="lainnyaCheck"> Lainnya</label>
-      <input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
-    </div>
+<div class="card">
+<label>Hobi</label>
 
-    <div class="card">
-      <label>Minat ke depan</label>
-      <select id="minat" required>
-        <option value="">Pilih</option>
-        <option value="Cuma hobi">Cuma hobi</option>
-        <option value="Mau dikembangkan">Mau dikembangkan</option>
-        <option value="Mau jadi penghasilan">Mau jadi penghasilan</option>
-      </select>
-    </div>
+<label class="option"><input type="checkbox" name="hobi" value="Gaming"> Gaming</label>
+<label class="option"><input type="checkbox" name="hobi" value="Olahraga"> Olahraga</label>
+<label class="option"><input type="checkbox" name="hobi" value="Ngoding"> Ngoding</label>
+<label class="option"><input type="checkbox" name="hobi" value="Musik"> Musik</label>
+<label class="option"><input type="checkbox" name="hobi" value="Bisnis/Trading"> Trading</label>
+<label class="option"><input type="checkbox" name="hobi" value="Date with Ayang"> Date with Ayang </label>
 
-    <div class="card">
-      <label>Tujuan</label>
-      <textarea id="tujuan"></textarea>
-    </div>
+<label><input type="checkbox" id="lainnyaCheck"> Lainnya</label>
+<input id="lainnyaInput" type="text" placeholder="Isi hobi lain..." class="hidden">
+</div>
 
-    <div class="card">
-      <button id="submitBtn">Kirim</button>
+<div class="card">
+<label>Minat ke depan</label>
+<select id="minat" required>
+<option value="">Pilih</option>
+<option value="Cuma hobi">Cuma hobi</option>
+<option value="Mau dikembangkan">Mau dikembangkan</option>
+<option value="Mau jadi penghasilan">Mau jadi penghasilan</option>
+</select>
+</div>
 
-      <div id="loading" class="hidden">
-        <div class="spinner"></div>
-        <p>Ngirim data...</p>
-      </div>
+<div class="card">
+<label>Tujuan</label>
+<textarea id="tujuan"></textarea>
+</div>
 
-      <p id="status" class="status"></p>
-    </div>
+<div class="card">
+<button id="submitBtn">Kirim</button>
 
-  </form>
+<div id="loading" class="hidden">
+<div class="spinner"></div>
+<p>Ngirim data...</p>
+</div>
+
+<p id="status" class="status"></p>
+</div>
+
+</form>
 
 </div>
 
@@ -260,15 +261,44 @@ const button = document.getElementById("submitBtn");
 const lainnyaCheck = document.getElementById("lainnyaCheck");
 const lainnyaInput = document.getElementById("lainnyaInput");
 
+// toggle lainnya
 lainnyaCheck.addEventListener("change", () => {
   lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
 });
 
+// checkbox UI
+document.querySelectorAll(".option").forEach(el => {
+  el.addEventListener("click", () => {
+    el.classList.toggle("active");
+  });
+});
+
+// progress bar
+const inputs = document.querySelectorAll("input, textarea, select");
+
+function updateProgress() {
+  let filled = 0;
+
+  inputs.forEach(i => {
+    if ((i.type === "checkbox" || i.type === "radio")) {
+      if (i.checked) filled++;
+    } else if (i.value) {
+      filled++;
+    }
+  });
+
+  const percent = (filled / inputs.length) * 100;
+  document.getElementById("progressBar").style.width = percent + "%";
+}
+
+inputs.forEach(i => i.addEventListener("change", updateProgress));
+
+// submit
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const semester = document.querySelector('input[name="semester"]:checked')?.value;
-  if (!semester) return alert("Pilih semester ");
+  if (!semester) return alert("Pilih semester");
 
   let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked'))
     .map(el => el.value);
@@ -277,7 +307,7 @@ form.addEventListener("submit", async (e) => {
     hobi.push(lainnyaInput.value);
   }
 
-  if (hobi.length === 0) return alert("Pilih hobi ");
+  if (hobi.length === 0) return alert("Pilih hobi");
 
   loading.classList.remove("hidden");
   button.disabled = true;
@@ -297,32 +327,25 @@ form.addEventListener("submit", async (e) => {
   button.innerText = "Kirim";
 
   status.innerText = "Terkirim 🚀";
-  status.style.opacity = 0;
-  setTimeout(() => status.style.opacity = 1, 100);
-  
-  // redirect setelah 1.5 detik
-  setTimeout(() => {
-  window.location.href = "thanks.html";
-}, 1500);
- 
-  form.reset();
-  lainnyaInput.classList.add("hidden");
-});
-   window.addEventListener("DOMContentLoaded", () => {
-  let clickCount = 0;
 
+  setTimeout(() => {
+    window.location.href = "thanks.html";
+  }, 1500);
+
+  form.reset();
+});
+
+// secret admin
+window.addEventListener("DOMContentLoaded", () => {
+  let clickCount = 0;
   const rocket = document.getElementById("secretRocket");
 
   rocket.addEventListener("click", () => {
     clickCount++;
-
     if (clickCount >= 5) {
       window.location.href = "admin-7x92-hidden.html";
     }
-
-    setTimeout(() => {
-      clickCount = 0;
-    }, 2000);
+    setTimeout(() => clickCount = 0, 2000);
   });
 });
 </script>
