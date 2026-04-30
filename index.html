@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Form Hobi - Analytics Edition</title>
 
+<link rel="icon" type="image/jpeg" href="jokowi.jpg">
+
 <style>
-/* TEMA DEEP SEA & EMERALD */
+/* TEMA DEEP SEA & ROYAL BLUE */
 body {
-  background: linear-gradient(270deg, #020617, #0f172a, #064e3b, #020617);
+  background: linear-gradient(270deg, #020617, #0f172a, #1e3a8a, #020617); /* Biru gelap di gradient */
   background-size: 600% 600%;
   animation: gradientMove 25s ease infinite;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 20px 10px;
+  padding: 20px 30px;
   min-height: 100vh;
 }
 
@@ -29,12 +31,13 @@ body {
   margin: auto;
 }
 
+/* Header Ganti Biru */
 .header {
-  background: linear-gradient(135deg, #10b981, #059669);
+  background: linear-gradient(135deg, #3b82f6, #1d4ed8); /* Ganti Hijau ke Biru */
   padding: 20px;
   border-radius: 16px;
   margin-bottom: 15px;
-  color: #020617;
+  color: white; /* Putih lebih masuk untuk tema biru */
 }
 
 .header-content {
@@ -48,6 +51,9 @@ body {
 
 .header-img {
   width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
   animation: float 4s ease-in-out infinite;
 }
 
@@ -67,7 +73,7 @@ body {
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: #10b981;
+  background: #3b82f6; /* Ganti Hijau ke Biru */
   transition: 0.4s;
 }
 
@@ -104,7 +110,7 @@ input[type="text"], textarea, select {
 
 input:focus, textarea:focus, select:focus {
   outline: none;
-  border-color: #10b981;
+  border-color: #3b82f6; /* Ganti Hijau ke Biru */
 }
 
 .hobi-list {
@@ -126,9 +132,9 @@ input:focus, textarea:focus, select:focus {
 }
 
 .chip input:checked + span {
-  background: #10b981;
-  border-color: #10b981;
-  color: #020617;
+  background: #3b82f6; /* Ganti Hijau ke Biru */
+  border-color: #3b82f6;
+  color: white;
   font-weight: bold;
 }
 
@@ -150,8 +156,8 @@ button {
   padding: 14px;
   border: none;
   border-radius: 10px;
-  background: #10b981;
-  color: #020617;
+  background: #3b82f6; /* Ganti Hijau ke Biru */
+  color: white;
   font-weight: bold;
   font-size: 15px;
   cursor: pointer;
@@ -170,8 +176,7 @@ button {
         <h1>🚀 <span id="secretRocket">Kenali Potensi Dirimu</span></h1>
         <p>Bantu kami merancang event yang seru sesuai hobimu.</p>
       </div>
-      <link rel="icon" type="image/png" href="jokowi.jpg">
-
+      <img src="jokowi.jpg" class="header-img" alt="Profile">
     </div>
   </div>
 
@@ -237,7 +242,7 @@ button {
       <div style="margin-top: 20px;">
         <button id="submitBtn">Kirim Data</button>
         <div id="loading" class="hidden" style="text-align: center;">
-          <p style="color: #10b981; font-size: 14px;">Memproses...</p>
+          <p style="color: #3b82f6; font-size: 14px;">Memproses...</p>
         </div>
       </div>
     </div>
