@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard | Analytics Pro</title>
 
+<link rel="icon" type="image/jpeg" href="jokowi.jpg">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
 <style>
@@ -58,7 +60,7 @@ body {
 }
 
 .metric-card h4 { margin: 0; color: #64748b; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
-.metric-card p { margin: 10px 0 0; font-size: 28px; font-weight: bold; color: #10b981; }
+.metric-card p { margin: 10px 0 0; font-size: 28px; font-weight: bold; color: #3b82f6; } /* Ubah ke Biru */
 
 /* FILTERS */
 .filter-row {
@@ -78,7 +80,7 @@ input, select {
   outline: none;
 }
 
-input:focus { border-color: #10b981; }
+input:focus { border-color: #3b82f6; } /* Ubah ke Biru */
 
 /* CHARTS */
 .chart-grid {
@@ -104,10 +106,10 @@ input:focus { border-color: #10b981; }
 
 .data-row:hover { background: rgba(255,255,255,0.02); }
 
-.data-info b { color: #10b981; font-size: 18px; display: block; margin-bottom: 4px; }
+.data-info b { color: #3b82f6; font-size: 18px; display: block; margin-bottom: 4px; } /* Ubah ke Biru */
 .data-info span { color: #64748b; font-size: 13px; }
 
-/* BADGES (NORMAL & CUSTOM) */
+/* BADGES */
 .badge {
   display: inline-block;
   padding: 3px 10px;
@@ -119,43 +121,35 @@ input:focus { border-color: #10b981; }
   border: 1px solid transparent;
 }
 
-.badge-standar {
-  background: rgba(16, 185, 129, 0.1);
-  color: #10b981;
-  border-color: rgba(16, 185, 129, 0.2);
-}
+.badge-standar { background: rgba(59, 130, 246, 0.1); color: #60a5fa; border-color: rgba(59, 130, 246, 0.2); }
+.badge-custom { background: rgba(148, 163, 184, 0.1); color: #94a3b8; border-color: rgba(148, 163, 184, 0.2); }
 
-.badge-custom {
-  background: rgba(59, 130, 246, 0.1);
-  color: #60a5fa;
-  border-color: rgba(59, 130, 246, 0.2);
-}
-
-/* TUJUAN BOX */
-.tujuan-box {
+/* BOXES (Tujuan & Ide Event) */
+.info-box {
   background: rgba(0,0,0,0.2);
-  padding: 12px;
+  padding: 10px;
   border-radius: 10px;
-  border-left: 4px solid #10b981;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
-.tujuan-box small {
-  color: #475569;
+.tujuan-border { border-left: 3px solid #3b82f6; } /* Ubah ke Biru */
+.event-border { border-left: 3px solid #f59e0b; background: rgba(245, 158, 11, 0.03); }
+
+.info-box small {
+  color: #64748b;
   display: block;
   font-size: 10px;
   text-transform: uppercase;
   margin-bottom: 4px;
 }
 
-.tujuan-box p {
+.info-box p {
   margin: 0;
-  font-size: 14px;
+  font-size: 13px;
   color: #cbd5e1;
-  line-height: 1.5;
+  line-height: 1.4;
 }
 
-/* BUTTONS */
 button {
   padding: 10px 20px;
   border: none;
@@ -165,9 +159,7 @@ button {
   transition: 0.2s;
 }
 
-.btn-primary { background: #10b981; color: #020617; }
-.btn-primary:hover { background: #34d399; }
-
+.btn-primary { background: #3b82f6; color: white; } /* Ubah ke Biru */
 .btn-logout { background: #1e293b; color: #64748b; font-size: 12px; border: 1px solid #334155; }
 
 .delete {
@@ -177,7 +169,6 @@ button {
   border: 1px solid #451a1a;
   padding: 8px 12px;
 }
-.delete:hover { background: #451a1a; }
 
 .hidden { display: none !important; }
 </style>
@@ -187,7 +178,6 @@ button {
 
 <div class="container">
 
-  <!-- LOGIN SECTION -->
   <div id="loginBox" class="login-container">
     <div class="card" style="width: 100%; max-width: 380px; text-align: center;">
       <h2 style="margin-top:0">🔐 Admin Analytics</h2>
@@ -198,7 +188,6 @@ button {
     </div>
   </div>
 
-  <!-- DASHBOARD SECTION -->
   <div id="dashboard" class="hidden">
     
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
@@ -209,7 +198,6 @@ button {
       <button class="btn-logout" onclick="logout()">Logout</button>
     </div>
 
-    <!-- Metrics Cards -->
     <div class="metrics">
       <div class="metric-card">
         <h4>Responden</h4>
@@ -225,7 +213,6 @@ button {
       </div>
     </div>
 
-    <!-- Filters Area -->
     <div class="card">
       <div class="filter-row">
         <input id="search" placeholder="Cari nama mahasiswa...">
@@ -239,19 +226,17 @@ button {
       </div>
     </div>
 
-    <!-- Charts Area -->
     <div class="chart-grid">
       <div class="card">
         <h4 style="margin-top:0; color:#64748b; font-size: 12px; text-transform: uppercase;">Trend Hobi</h4>
         <canvas id="chart"></canvas>
       </div>
       <div class="card">
-        <h4 style="margin-top:0; color:#64748b; font-size: 12px; text-transform: uppercase;">Distribusi Persentase</h4>
+        <h4 style="margin-top:0; color:#64748b; font-size: 12px; text-transform: uppercase;">Persentase Hobi</h4>
         <canvas id="pieChart"></canvas>
       </div>
     </div>
 
-    <!-- Data List -->
     <div class="card" style="padding: 10px 0;">
       <h4 style="padding: 15px 24px; margin:0; color:#94a3b8; font-size: 13px; border-bottom: 1px solid #1e293b;">FEED RESPONDEN</h4>
       <div id="list"></div>
@@ -276,18 +261,16 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 const auth = getAuth(app);
 
-// DAFTAR HOBI STANDAR
 const HOBI_STANDAR = ["Gaming", "Olahraga", "Ngoding", "Musik", "Trading", "Date with Ayang"];
 
-// MAPPING WARNA KONSISTEN
 const COLOR_MAP = {
-  "Gaming": "#10b981",          // Emerald
-  "Ngoding": "#3b82f6",         // Blue
-  "Olahraga": "#8b5cf6",        // Purple
-  "Musik": "#f59e0b",           // Orange
-  "Trading": "#06b6d4",         // Cyan
-  "Date with Ayang": "#ef4444", // Red
-  "Lainnya": "#64748b"          // Slate
+  "Gaming": "#3b82f6",
+  "Ngoding": "#60a5fa",
+  "Olahraga": "#8b5cf6",
+  "Musik": "#f59e0b",
+  "Trading": "#06b6d4",
+  "Date with Ayang": "#ef4444",
+  "Lainnya": "#64748b"
 };
 
 window.addEventListener("load", () => { signOut(auth); });
@@ -300,13 +283,10 @@ let chart;
 let pieChart;
 let allData = [];
 
-// AUTH
 window.login = async () => {
   try {
     await signInWithEmailAndPassword(auth, document.getElementById("email").value, document.getElementById("password").value);
-  } catch {
-    alert("Login Gagal.");
-  }
+  } catch { alert("Login Gagal."); }
 };
 
 window.logout = () => signOut(auth);
@@ -334,7 +314,6 @@ function applyFilter() {
   let filtered = allData;
   if (filterSemester.value !== "all") filtered = filtered.filter(d => d.semester === filterSemester.value);
   if (searchInput.value) filtered = filtered.filter(d => d.nama.toLowerCase().includes(searchInput.value.toLowerCase()));
-
   updateStats(filtered);
   render(filtered);
   renderCharts(filtered);
@@ -345,7 +324,6 @@ filterSemester.addEventListener("change", applyFilter);
 
 function updateStats(data) {
   document.getElementById("statTotal").innerText = data.length;
-  
   const hobiCounts = {};
   data.forEach(d => d.hobi.forEach(h => {
     const label = HOBI_STANDAR.includes(h) ? h : "Lainnya";
@@ -353,7 +331,6 @@ function updateStats(data) {
   }));
   const topHobi = Object.entries(hobiCounts).sort((a,b) => b[1]-a[1])[0];
   document.getElementById("statHobi").innerText = topHobi ? topHobi[0] : "-";
-
   const semCounts = {};
   data.forEach(d => semCounts[d.semester] = (semCounts[d.semester] || 0) + 1);
   const topSem = Object.entries(semCounts).sort((a,b) => b[1]-a[1])[0];
@@ -369,18 +346,23 @@ function render(data) {
     const badgeHTML = d.hobi.map(h => {
       const isStandar = HOBI_STANDAR.includes(h);
       const cls = isStandar ? 'badge-standar' : 'badge-custom';
-      const label = isStandar ? h : `${h} (Lainnya)`;
-      return `<span class="badge ${cls}">${label}</span>`;
+      return `<span class="badge ${cls}">${h}</span>`;
     }).join('');
 
     div.innerHTML = `
       <div class="data-info" style="flex: 1; padding-right: 20px;">
         <b>${d.nama}</b> 
-        <span>Semester ${d.semester} • ${d.minat}</span>
+        <span>Semester ${d.semester} • ${d.minat || "Personal"}</span>
         <div style="margin: 8px 0;">${badgeHTML}</div>
-        <div class="tujuan-box">
-          <small>Tujuan:</small>
+        
+        <div class="info-box tujuan-border">
+          <small>🎯 Tujuan / Harapan:</small>
           <p>${d.tujuan || "-"}</p>
+        </div>
+
+        <div class="info-box event-border">
+          <small>💡 Ide Event Kedepannya:</small>
+          <p>${d.ideEvent || "Belum ada ide yang dibagikan."}</p>
         </div>
       </div>
       <button class="delete" onclick="hapus('${d.id}')">Hapus</button>
@@ -389,7 +371,7 @@ function render(data) {
   });
 }
 
-window.hapus = async (id) => { if (confirm("Hapus?")) await deleteDoc(doc(db, "hobi", id)); };
+window.hapus = async (id) => { if (confirm("Hapus data ini?")) await deleteDoc(doc(db, "hobi", id)); };
 
 function renderCharts(data) {
   const count = {};
@@ -399,7 +381,6 @@ function renderCharts(data) {
       count[label] = (count[label] || 0) + 1;
     });
   });
-
   const labels = Object.keys(count);
   const values = Object.values(count);
   const backgroundColors = labels.map(l => COLOR_MAP[l] || COLOR_MAP["Lainnya"]);
@@ -407,42 +388,17 @@ function renderCharts(data) {
   if (chart) chart.destroy();
   chart = new Chart(document.getElementById("chart"), {
     type: "bar",
-    data: {
-      labels,
-      datasets: [{
-        label: 'Jumlah',
-        data: values,
-        backgroundColor: backgroundColors,
-        borderRadius: 6
-      }]
-    },
-    options: {
-      plugins: { legend: { display: false } },
-      scales: { 
-        y: { ticks: { color: "#64748b", stepSize: 1 }, grid: { color: "#1e293b" } },
-        x: { ticks: { color: "#64748b" }, grid: { display: false } }
-      }
-    }
+    data: { labels, datasets: [{ data: values, backgroundColor: backgroundColors, borderRadius: 6 }] },
+    options: { plugins: { legend: { display: false } }, scales: { y: { ticks: { stepSize: 1 } } } }
   });
 
   if (pieChart) pieChart.destroy();
   pieChart = new Chart(document.getElementById("pieChart"), {
     type: 'doughnut',
-    data: {
-      labels,
-      datasets: [{
-        data: values,
-        backgroundColor: backgroundColors,
-        borderWidth: 0
-      }]
-    },
-    options: {
-      cutout: '75%',
-      plugins: { legend: { position: 'bottom', labels: { color: "#64748b", font: { size: 10 } } } }
-    }
+    data: { labels, datasets: [{ data: values, backgroundColor: backgroundColors, borderWidth: 0 }] },
+    options: { cutout: '70%', plugins: { legend: { position: 'bottom', labels: { color: "#64748b", font: { size: 10 } } } } }
   });
 }
 </script>
-
 </body>
 </html>
