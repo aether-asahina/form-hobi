@@ -3,31 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form Hobi - Emerald Edition</title>
+<title>Form Hobi - Analytics Edition</title>
 
 <style>
-/* TEMA DEEP SEA & EMERALD - NYAMAN DI MATA */
+/* TEMA DEEP SEA & EMERALD */
 body {
   background: linear-gradient(270deg, #020617, #0f172a, #064e3b, #020617);
   background-size: 600% 600%;
-  animation: gradientMove 25s ease infinite; /* Sangat lambat agar tenang */
+  animation: gradientMove 25s ease infinite;
   color: white;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
-  padding: 40px 10px;
-  position: relative;
+  padding: 20px 10px;
   min-height: 100vh;
-}
-
-/* EFEK CAHAYA LEMBUT (Subtle Glow) */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.1), transparent 30%),
-              radial-gradient(circle at 90% 90%, rgba(14, 165, 233, 0.1), transparent 30%);
-  pointer-events: none;
-  z-index: 0;
 }
 
 @keyframes gradientMove {
@@ -37,267 +25,228 @@ body::before {
 }
 
 .container {
-  max-width: 500px;
+  max-width: 480px;
   margin: auto;
-  position: relative;
-  z-index: 1;
 }
 
-/* Progress bar warna Emerald */
+.header {
+  background: linear-gradient(135deg, #10b981, #059669);
+  padding: 20px;
+  border-radius: 16px;
+  margin-bottom: 15px;
+  color: #020617;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.header-text h1 { margin: 0; font-size: 18px; }
+.header-text p { margin: 5px 0 0; opacity: 0.8; font-size: 12px; }
+
+.header-img {
+  width: 50px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
 .progress {
-  height: 6px;
+  height: 4px;
   background: #1e293b;
   border-radius: 10px;
   overflow: hidden;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
 }
 
 .progress-bar {
   height: 100%;
   width: 0%;
-  background: linear-gradient(90deg, #10b981, #34d399);
+  background: #10b981;
   transition: 0.4s;
 }
 
-/* Card Glassmorphism yang lebih gelap agar teks jelas */
+/* SATU CARD UTAMA SEPERTI FOTO PERTAMA */
 .card {
-  background: rgba(15, 23, 42, 0.7);
-  backdrop-filter: blur(8px);
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
   padding: 24px;
   border-radius: 16px;
-  margin-bottom: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
   border: 1px solid rgba(255, 255, 255, 0.05);
-
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeUp 0.6s ease forwards;
 }
 
-@keyframes fadeUp {
-  to { opacity:1; transform:translateY(0); }
+.input-group {
+  margin-bottom: 20px;
 }
 
 label {
-  display:block;
-  margin-bottom:10px;
-  font-weight: 500;
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
   color: #94a3b8;
 }
 
 input[type="text"], textarea, select {
-  width:100%;
-  padding:12px;
+  width: 100%;
+  padding: 12px;
   border: 1px solid #334155;
-  border-radius:10px;
-  background:#1e293b;
-  color:white;
+  border-radius: 10px;
+  background: #1e293b;
+  color: white;
   box-sizing: border-box;
+  font-size: 14px;
 }
 
 input:focus, textarea:focus, select:focus {
-  outline:none;
+  outline: none;
   border-color: #10b981;
-  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.2);
 }
 
-/* Chip Hobi - Emerald Theme */
 .hobi-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 10px;
+  gap: 8px;
 }
 
 .chip { cursor: pointer; }
 .chip input { display: none; }
 .chip span {
   display: inline-block;
-  padding: 10px 16px;
+  padding: 8px 14px;
   border-radius: 50px;
   background: #1e293b;
   border: 1px solid #334155;
+  font-size: 13px;
   transition: 0.3s;
-  font-size: 14px;
 }
 
 .chip input:checked + span {
   background: #10b981;
   border-color: #10b981;
-  color: #020617; /* Teks gelap di bg terang agar kontras pas */
+  color: #020617;
   font-weight: bold;
 }
 
-/* Radio button style */
-input[type="radio"] {
-  accent-color: #10b981;
-  margin-right: 8px;
+.ide-event-box {
+  background: rgba(59, 130, 246, 0.05);
+  border: 1px dashed rgba(59, 130, 246, 0.4);
+  padding: 15px;
+  border-radius: 12px;
+  margin-top: 10px;
 }
 
-/* Button mewah */
+.ide-event-box label {
+  color: #60a5fa;
+  font-weight: bold;
+}
+
 button {
-  width:100%;
-  padding:14px;
-  border:none;
-  border-radius:10px;
-  background: linear-gradient(135deg, #10b981, #059669);
-  color:#020617;
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 10px;
+  background: #10b981;
+  color: #020617;
   font-weight: bold;
-  font-size: 16px;
-  cursor:pointer;
-  transition: 0.3s;
+  font-size: 15px;
+  cursor: pointer;
 }
 
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
-}
-
-.hidden { display:none; }
-
-.status {
-  text-align:center;
-  margin-top:15px;
-  color:#34d399;
-}
-
-/* Spinner */
-.spinner {
-  width:30px;
-  height:30px;
-  border:3px solid rgba(16, 185, 129, 0.1);
-  border-top:3px solid #10b981;
-  border-radius:50%;
-  animation:spin 0.8s linear infinite;
-  margin:10px auto;
-}
-
-@keyframes spin { to { transform:rotate(360deg); } }
-
-/* Header */
-.header {
-  background: linear-gradient(135deg, #10b981, #059669);
-  padding: 30px;
-  border-radius: 20px;
-  margin-bottom: 25px;
-  color: #020617; /* Teks gelap biar nyaman dibaca */
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.header-text h1 { margin: 0; font-size: 22px; }
-.header-text p { margin: 5px 0 0; opacity: 0.8; font-size: 14px; }
-
-.header-img {
-  width: 70px;
-  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
-  animation: float 4s ease-in-out infinite;
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-.footer {
-  text-align: center;
-  padding: 30px;
-  font-size: 12px;
-  color: #475569;
-}
+.hidden { display: none; }
+.footer { text-align: center; padding: 20px; font-size: 11px; color: #475569; }
 </style>
 </head>
-
 <body>
 
 <div class="container">
+  <div class="header">
+    <div class="header-content">
+      <div class="header-text">
+        <h1>🚀 <span id="secretRocket">Kenali Potensi Dirimu</span></h1>
+        <p>Bantu kami merancang event yang seru sesuai hobimu.</p>
+      </div>
+      <link rel="icon" type="image/png" href="jokowi.jpg">
 
-<div class="header">
-  <div class="header-content">
-    <div class="header-text">
-      <h1><span id="secretRocket" style="cursor:pointer">🚀</span> Kenali Potensi Dirimu</h1>
-      <p>Bantu kami buat event & peluang yang cocok buat kamu.</p>
-    </div>    
-    
-  <link rel="icon" type="image/jpeg" href="jokowi.jpg"
+    </div>
   </div>
-</div>
 
-<div class="progress">
-  <div class="progress-bar" id="progressBar"></div>
-</div>
-
-<form id="formHobi">
-
-<div class="card">
-  <label>Nama Lengkap</label>
-  <input id="nama" type="text" placeholder="Masukkan nama..." required>
-</div>
-
-<div class="card">
-  <label>Semester</label>
-  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
-    <label><input type="radio" name="semester" value="2"> 2</label>
-    <label><input type="radio" name="semester" value="4"> 4</label>
-    <label><input type="radio" name="semester" value="6"> 6</label>
-    <label><input type="radio" name="semester" value="8"> 8</label>
+  <div class="progress">
+    <div class="progress-bar" id="progressBar"></div>
   </div>
+
+  <form id="formHobi">
+    <div class="card">
+      <div class="input-group">
+        <label>Nama Lengkap</label>
+        <input id="nama" type="text" placeholder="Masukkan nama..." required>
+      </div>
+
+      <div class="input-group">
+        <label>Semester</label>
+        <select id="semester" required>
+          <option value="">Pilih Semester</option>
+          <option value="2">Semester 2</option>
+          <option value="4">Semester 4</option>
+          <option value="6">Semester 6</option>
+          <option value="8">Semester 8</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Pilih Hobi</label>
+        <div class="hobi-list">
+          <label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
+          <label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
+          <label class="chip"><input type="checkbox" name="hobi" value="Ngoding"><span>Ngoding</span></label>
+          <label class="chip"><input type="checkbox" name="hobi" value="Musik"><span>Musik</span></label>
+          <label class="chip"><input type="checkbox" name="hobi" value="Trading"><span>Trading</span></label>
+          <label class="chip"><input type="checkbox" name="hobi" value="Date with Ayang"><span>Date with Ayang</span></label>
+        </div>
+        <label class="chip" style="margin-top: 8px; display: inline-block;">
+          <input type="checkbox" id="lainnyaCheck"><span>Lainnya</span>
+        </label>
+        <input id="lainnyaInput" type="text" placeholder="Sebutkan hobi lain..." class="hidden" style="margin-top:10px">
+      </div>
+
+      <div class="input-group">
+        <label>Minat ke Depan</label>
+        <select id="minat" required>
+          <option value="">Pilih Rencana</option>
+          <option value="Cuma hobi">Hanya sekedar hobi</option>
+          <option value="Mau dikembangkan">Ingin dikembangkan</option>
+          <option value="Mau jadi penghasilan">Ingin jadi penghasilan</option>
+        </select>
+      </div>
+
+      <div class="input-group">
+        <label>Tujuan / Harapan</label>
+        <textarea id="tujuan" rows="2" placeholder="Apa ekspektasimu?"></textarea>
+      </div>
+
+      <div class="ide-event-box">
+        <label>💡 Ide Event Kedepannya</label>
+        <p style="font-size: 10px; color: #64748b; margin: 2px 0 8px 0;">Mau buat event apa & kek mana teknisnya?</p>
+        <textarea id="ideEvent" placeholder="Contoh: Tournament MLBB, Bedah Hardware, dll..." rows="3"></textarea>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <button id="submitBtn">Kirim Data</button>
+        <div id="loading" class="hidden" style="text-align: center;">
+          <p style="color: #10b981; font-size: 14px;">Memproses...</p>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <footer class="footer">
+    © 2026 Form Hobi • Hobi Analytics Pro
+  </footer>
 </div>
-
-<div class="card">
-  <label>Pilih Hobi</label>
-  <div class="hobi-list">
-  <label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
-  <label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
-  <label class="chip"><input type="checkbox" name="hobi" value="Ngoding"><span>Ngoding</span></label>
-  <label class="chip"><input type="checkbox" name="hobi" value="Musik"><span>Musik</span></label>
-  <label class="chip"><input type="checkbox" name="hobi" value="Trading"><span>Trading</span></label>
-  <label class="chip"><input type="checkbox" name="hobi" value="Date with Ayang"><span>Date with Ayang</span></label>
-</div>
-
-  
-  <label class="chip" style="margin-top: 5px; display: inline-block;">
-    <input type="checkbox" id="lainnyaCheck">
-    <span>Lainnya</span>
-  </label>
-  <input id="lainnyaInput" type="text" placeholder="Sebutkan hobi lain..." class="hidden" style="margin-top:10px">
-</div>
-
-<div class="card">
-  <label>Minat ke Depan</label>
-  <select id="minat" required>
-    <option value="">Pilih Rencana</option>
-    <option value="Cuma hobi">Hanya sekedar hobi</option>
-    <option value="Mau dikembangkan">Ingin dikembangkan</option>
-    <option value="Mau jadi penghasilan">Ingin jadi penghasilan</option>
-  </select>
-</div>
-
-<div class="card">
-  <label>Tujuan / Harapan</label>
-  <textarea id="tujuan" rows="3" placeholder="Apa yang ingin kamu capai?"></textarea>
-</div>
-
-<div class="card" style="background: transparent; box-shadow: none; border: none; padding: 0;">
-  <button id="submitBtn">Kirim Data</button>
-  <div id="loading" class="hidden">
-    <div class="spinner"></div>
-    <p style="text-align:center; font-size:14px; color:#10b981">Memproses data...</p>
-  </div>
-  <p id="status" class="status"></p>
-</div>
-
-</form>
-
-</div>
-
-<footer class="footer">
-  © 2026 Form Hobi • Divisi Development
-</footer>
 
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -312,72 +261,63 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-const form = document.getElementById("formHobi");
-const loading = document.getElementById("loading");
-const button = document.getElementById("submitBtn");
 const lainnyaCheck = document.getElementById("lainnyaCheck");
 const lainnyaInput = document.getElementById("lainnyaInput");
 
-// Toggle input hobi lainnya
 lainnyaCheck.addEventListener("change", () => {
   lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
-  if (lainnyaCheck.checked) lainnyaInput.focus();
 });
 
-// Update progress bar
+// Progress Bar Logic
 const inputs = document.querySelectorAll("input, textarea, select");
 function updateProgress() {
   let filled = 0;
   if(document.getElementById("nama").value) filled++;
-  if(document.querySelector('input[name="semester"]:checked')) filled++;
+  if(document.getElementById("semester").value) filled++;
   if(document.querySelector('input[name="hobi"]:checked') || lainnyaCheck.checked) filled++;
   if(document.getElementById("minat").value) filled++;
   if(document.getElementById("tujuan").value) filled++;
+  if(document.getElementById("ideEvent").value) filled++;
 
-  const percent = (filled / 5) * 100;
+  const percent = (filled / 6) * 100;
   document.getElementById("progressBar").style.width = percent + "%";
 }
 inputs.forEach(i => i.addEventListener("input", updateProgress));
 inputs.forEach(i => i.addEventListener("change", updateProgress));
 
-// Submit data
-form.addEventListener("submit", async (e) => {
+// Submit Logic
+document.getElementById("formHobi").addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  const semester = document.querySelector('input[name="semester"]:checked')?.value;
-  if (!semester) return alert("Pilih semester dulu ya");
-
+  
   let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked')).map(el => el.value);
   if (lainnyaCheck.checked && lainnyaInput.value) hobi.push(lainnyaInput.value);
-  if (hobi.length === 0) return alert("Pilih minimal satu hobi");
 
-  loading.classList.remove("hidden");
-  button.classList.add("hidden");
+  document.getElementById("submitBtn").classList.add("hidden");
+  document.getElementById("loading").classList.remove("hidden");
 
   try {
     await addDoc(collection(db, "hobi"), {
       nama: document.getElementById("nama").value,
-      semester,
+      semester: document.getElementById("semester").value,
       hobi,
       minat: document.getElementById("minat").value,
       tujuan: document.getElementById("tujuan").value,
+      ideEvent: document.getElementById("ideEvent").value,
       waktu: new Date()
     });
-    
-    document.getElementById("status").innerText = "Berhasil Terkirim! 🚀";
-    setTimeout(() => window.location.href = "thanks.html", 1500);
+    alert("Berhasil Terkirim! 🚀");
+    location.reload();
   } catch (err) {
-    alert("Waduh, gagal kirim. Coba lagi ya.");
-    loading.classList.add("hidden");
-    button.classList.remove("hidden");
+    alert("Gagal kirim.");
+    document.getElementById("submitBtn").classList.remove("hidden");
+    document.getElementById("loading").classList.add("hidden");
   }
 });
 
-// Secret Admin
 let clickCount = 0;
 document.getElementById("secretRocket").addEventListener("click", () => {
   clickCount++;
-  if (clickCount >= 5) window.location.href = "admin-7x92-hidden.html";
+  if (clickCount >= 5) window.location.href = "admin.html";
   setTimeout(() => clickCount = 0, 2000);
 });
 </script>
