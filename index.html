@@ -1,340 +1,291 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Form Hobi - Analytics Edition</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Misi Nasional: Mandi! 🚿</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+        }
 
-<link rel="icon" type="image/jpeg" href="jokowi.jpg">
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
 
-<style>
-/* TEMA DEEP SEA & ROYAL BLUE */
-body {
-  background: linear-gradient(270deg, #020617, #0f172a, #1e3a8a, #020617);
-  background-size: 600% 600%;
-  animation: gradientMove 25s ease infinite;
-  color: white;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  margin: 0;
-  padding: 20px 30px;
-  min-height: 100vh;
-}
+        .card-container {
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            width: 100%;
+            max-width: 400px;
+            border-radius: 28px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(255, 105, 135, 0.25);
+            border: 3px solid #fff;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
 
-@keyframes gradientMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
+        .icon-box {
+            font-size: 65px;
+            margin-bottom: 12px;
+            display: inline-block;
+            animation: float 2.5s ease-in-out infinite;
+        }
 
-.container {
-  max-width: 480px;
-  margin: auto;
-}
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-12px) rotate(5deg); }
+        }
 
-.header {
-  background: linear-gradient(135deg, #3b82f6, #1d4ed8);
-  padding: 20px;
-  border-radius: 16px;
-  margin-bottom: 15px;
-  color: white;
-}
+        .badge {
+            background: #ffe0e9;
+            color: #d6336c;
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
 
-.header-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-}
+        h1 {
+            color: #2b2d42;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
 
-.header-text h1 { 
-  margin: 0; 
-  font-size: 18px; 
-  cursor: pointer; /* Menandakan bisa diklik */
-  user-select: none;
-}
-.header-text p { margin: 5px 0 0; opacity: 0.8; font-size: 12px; }
+        p {
+            color: #555b6e;
+            font-size: 14.5px;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
 
-.header-img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  object-fit: cover;
-  animation: float 4s ease-in-out infinite;
-}
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
+        button {
+            border: none;
+            padding: 15px 20px;
+            border-radius: 16px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            width: 100%;
+        }
 
-.progress {
-  height: 4px;
-  background: #1e293b;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: 15px;
-}
+        .btn-primary {
+            background: linear-gradient(45deg, #ff4d79, #ff758c);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 77, 121, 0.35);
+        }
 
-.progress-bar {
-  height: 100%;
-  width: 0%;
-  background: #3b82f6;
-  transition: 0.4s;
-}
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 25px rgba(255, 77, 121, 0.5);
+        }
 
-.card {
-  background: rgba(15, 23, 42, 0.8);
-  backdrop-filter: blur(10px);
-  padding: 24px;
-  border-radius: 16px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-}
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
 
-.input-group {
-  margin-bottom: 20px;
-}
+        .btn-secondary {
+            background: #f1f3f5;
+            color: #495057;
+        }
 
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-size: 14px;
-  color: #94a3b8;
-}
+        .btn-secondary:hover {
+            background: #e9ecef;
+        }
 
-input[type="text"], textarea, select {
-  width: 100%;
-  padding: 12px;
-  border: 1px solid #334155;
-  border-radius: 10px;
-  background: #1e293b;
-  color: white;
-  box-sizing: border-box;
-  font-size: 14px;
-}
+        /* Tampilan Sertifikat Penghargaan */
+        .award-card {
+            display: none;
+            background: linear-gradient(135deg, #fffdf7 0%, #fff5d6 100%);
+            border: 3px dashed #f59f00;
+        }
 
-input:focus, textarea:focus, select:focus {
-  outline: none;
-  border-color: #3b82f6;
-}
+        .award-ribbon {
+            background: linear-gradient(45deg, #f59f00, #fcc419);
+            color: #fff;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 14px;
+            box-shadow: 0 4px 12px rgba(245, 159, 0, 0.3);
+        }
 
-.hobi-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-}
+        .certificate-box {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 18px;
+            margin: 16px 0 22px 0;
+            border: 1px solid #ffe8a1;
+            box-shadow: inset 0 0 10px rgba(252, 196, 25, 0.1);
+        }
 
-.chip { cursor: pointer; }
-.chip input { display: none; }
-.chip span {
-  display: inline-block;
-  padding: 8px 14px;
-  border-radius: 50px;
-  background: #1e293b;
-  border: 1px solid #334155;
-  font-size: 13px;
-  transition: 0.3s;
-}
+        .cert-title {
+            font-size: 11px;
+            color: #868e96;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
 
-.chip input:checked + span {
-  background: #3b82f6;
-  border-color: #3b82f6;
-  color: white;
-  font-weight: bold;
-}
+        .cert-name {
+            font-size: 19px;
+            font-weight: 700;
+            color: #e67700;
+            margin: 6px 0;
+        }
 
-.ide-event-box {
-  background: rgba(59, 130, 246, 0.05);
-  border: 1px dashed rgba(59, 130, 246, 0.4);
-  padding: 15px;
-  border-radius: 12px;
-  margin-top: 10px;
-}
+        .reward-list {
+            text-align: left;
+            font-size: 13.5px;
+            color: #495057;
+            margin-top: 12px;
+            padding-top: 12px;
+            border-top: 1px dashed #dee2e6;
+            list-style: none;
+        }
 
-.ide-event-box label {
-  color: #60a5fa;
-  font-weight: bold;
-}
+        .reward-list li {
+            margin-bottom: 6px;
+        }
 
-button {
-  width: 100%;
-  padding: 14px;
-  border: none;
-  border-radius: 10px;
-  background: #3b82f6;
-  color: white;
-  font-weight: bold;
-  font-size: 15px;
-  cursor: pointer;
-}
-
-.hidden { display: none !important; }
-.footer { text-align: center; padding: 20px; font-size: 11px; color: #475569; }
-</style>
+        .timestamp {
+            font-size: 11px;
+            color: #adb5bd;
+            margin-top: 14px;
+        }
+    </style>
 </head>
 <body>
 
-<div class="container">
-  <div class="header">
-    <div class="header-content">
-      <div class="header-text">
-        <h1 id="secretRocket">🚀 Kenali Potensi Dirimu</h1>
-        <p>Bantu kami merancang event yang seru sesuai hobimu.</p>
-      </div>
-      <img src="jokowi.jpg" class="header-img" alt="Profile">
-    </div>
-  </div>
-
-  <div class="progress">
-    <div class="progress-bar" id="progressBar"></div>
-  </div>
-
-  <form id="formHobi">
-    <div class="card">
-      <div class="input-group">
-        <label>Nama Lengkap</label>
-        <input id="nama" type="text" placeholder="Masukkan nama..." required>
-      </div>
-
-      <div class="input-group">
-        <label>Semester</label>
-        <select id="semester" required>
-          <option value="">Pilih Semester</option>
-          <option value="2">Semester 2</option>
-          <option value="4">Semester 4</option>
-          <option value="6">Semester 6</option>
-          <option value="8">Semester 8</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label>Pilih Hobi</label>
-        <div class="hobi-list">
-          <label class="chip"><input type="checkbox" name="hobi" value="Gaming"><span>Gaming</span></label>
-          <label class="chip"><input type="checkbox" name="hobi" value="Olahraga"><span>Olahraga</span></label>
-          <label class="chip"><input type="checkbox" name="hobi" value="Ngoding"><span>Ngoding</span></label>
-          <label class="chip"><input type="checkbox" name="hobi" value="Musik"><span>Musik</span></label>
-          <label class="chip"><input type="checkbox" name="hobi" value="Trading"><span>Trading</span></label>
-          <label class="chip"><input type="checkbox" name="hobi" value="Date with Ayang"><span>Date with Ayang</span></label>
+    <!-- CARD 1: PERINGATAN BELUM MANDI -->
+    <div class="card-container" id="warningCard">
+        <div class="badge">⚠️ Peringatan Darurat</div>
+        <br>
+        <div class="icon-box" id="mainIcon">🦥</div>
+        <h1 id="titleText">Halo Tuan Putri yang Mageran!</h1>
+        <p id="descText">
+            Sekedar mengingatkan, air di kamar mandi udah kangen berat sama kamu. 
+            Cantiknya sih udah maksimal, tapi kalau wangi sabun pasti jauh lebih <i>damage</i> lagi. Mandi gih! ❤️
+        </p>
+        <div class="btn-group">
+            <button class="btn-primary" onclick="claimAward()">✨ Aku Udah Mandi Dong! ✨</button>
+            <button class="btn-secondary" id="lazyBtn" onclick="stillLazy()">Nanti dulu ah, masih mager 😴</button>
         </div>
-        <label class="chip" style="margin-top: 8px; display: inline-block;">
-          <input type="checkbox" id="lainnyaCheck"><span>Lainnya</span>
-        </label>
-        <input id="lainnyaInput" type="text" placeholder="Sebutkan hobi lain..." class="hidden" style="margin-top:10px">
-      </div>
-
-      <div class="input-group">
-        <label>Level Komitmen (Minat)</label>
-        <select id="minat" required>
-          <option value="">Kamu di posisi mana?</option>
-          <option value="Explorer">Explorer — Baru mau coba-coba hobi ini</option>
-          <option value="Specialist">Specialist — Mau asah skill lebih dalem lagi</option>
-          <option value="Professional">Professional — Target jadi sumber cuan/karir</option>
-        </select>
-      </div>
-
-      <div class="input-group">
-        <label>Goals / Target Utama</label>
-        <textarea id="tujuan" rows="4" placeholder="Contoh: Pengen punya networking baru, atau pengen jago rakit PC..."></textarea>
-      </div>
-
-      <div class="ide-event-box">
-        <label>💡 Ide Event Kedepannya</label>
-        <p style="font-size: 10px; color: #64748b; margin: 2px 0 8px 0;">Mau buat event apa & kek mana teknisnya?</p>
-        <textarea id="ideEvent" placeholder="Contoh: Tournament MLBB, Bedah Hardware, dll..." rows="3"></textarea>
-      </div>
-
-      <div style="margin-top: 20px;">
-        <button id="submitBtn" type="submit">Kirim Data</button>
-        <div id="loading" class="hidden" style="text-align: center;">
-          <p style="color: #3b82f6; font-size: 14px;">Memproses...</p>
-        </div>
-      </div>
     </div>
-  </form>
 
-  <footer class="footer">
-    © 2026 Form Hobi • Hobi Analytics Pro
-  </footer>
-</div>
+    <!-- CARD 2: PENGHARGAAN SUDAH MANDI -->
+    <div class="card-container award-card" id="awardCard">
+        <div class="award-ribbon">🏆 REKOR DUNIA TERPECAHKAN</div>
+        <br>
+        <div class="icon-box">👑</div>
+        <h1>Sertifikat Cewek Terwangi</h1>
+        <p style="margin-bottom: 10px;">
+            Selamat! Kamu berhasil mengalahkan rasa mager dan resmi dinobatkan sebagai:
+        </p>
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+        <div class="certificate-box">
+            <div class="cert-title">Penghargaan Diberikan Kepada</div>
+            <div class="cert-name">Kesayangan Aku ❤️</div>
+            <div style="font-size: 12.5px; color: #555;">Atas keberaniannya menyentuh air dan sabun hari ini.</div>
+            
+            <ul class="reward-list">
+                <li>✅ <b>+9999%</b> Level Kecantikan & Kesegaran</li>
+                <li>✅ <b>Bebas Omelan</b> disuruh mandi seharian</li>
+                <li>🎟️ <b>1x Kupon dipangku/dipeluk</b> (Screenshot layar ini buat klaim ke aku!)</li>
+            </ul>
+        </div>
 
-const firebaseConfig = {
-  apiKey: "AIzaSyAfw2aw4kZkFgBnzRs4aBpDOomrNnD5JcM",
-  authDomain: "hobi-c4dca.firebaseapp.com",
-  projectId: "hobi-c4dca",
-};
+        <button class="btn-primary" onclick="fireConfetti()">🎉 Rayakan Lagi! 🎉</button>
+        <div class="timestamp" id="timeText"></div>
+    </div>
 
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+    <script>
+        let lazyCount = 0;
+        const lazyReplies = [
+            {
+                icon: "🧐",
+                title: "Yakin Masih Nunda?",
+                desc: "Kuman-kuman di badan kamu udah mulai bikin KTP dan bangun pemukiman lho. Yuk mandi yuk, 10 menit aja!",
+                btn: "5 menit lagi deh janji ✌️"
+            },
+            {
+                icon: "🦆",
+                title: "Bebek Kamar Mandi Nangis...",
+                desc: "Gayung sama sabun udah curhat ke aku katanya dicuekin seharian. Masa kalah rajin sama bebek sih sayang?",
+                btn: "Duh, masih dingin airnya 🥶"
+            },
+            {
+                icon: "🚨",
+                title: "Mode Paksa Aktif!",
+                desc: "Tombol magernya udah aku kunci! Sekarang bangun dari kasur, ambil handuk, terus mandi biar dapat hadiah spesial!",
+                btn: "Iya-iya ini mau jalan mandi! 🏃‍♀️💨"
+            }
+        ];
 
-// Logic Checkbox Lainnya
-const lainnyaCheck = document.getElementById("lainnyaCheck");
-const lainnyaInput = document.getElementById("lainnyaInput");
-lainnyaCheck.addEventListener("change", () => {
-  lainnyaInput.classList.toggle("hidden", !lainnyaCheck.checked);
-});
+        function stillLazy() {
+            const icon = document.getElementById('mainIcon');
+            const title = document.getElementById('titleText');
+            const desc = document.getElementById('descText');
+            const btn = document.getElementById('lazyBtn');
 
-// Progress Bar Logic
-const inputs = document.querySelectorAll("input, textarea, select");
-function updateProgress() {
-  let filled = 0;
-  if(document.getElementById("nama").value) filled++;
-  if(document.getElementById("semester").value) filled++;
-  if(document.querySelector('input[name="hobi"]:checked') || lainnyaCheck.checked) filled++;
-  if(document.getElementById("minat").value) filled++;
-  if(document.getElementById("tujuan").value) filled++;
-  if(document.getElementById("ideEvent").value) filled++;
+            if (lazyCount < lazyReplies.length) {
+                icon.innerText = lazyReplies[lazyCount].icon;
+                title.innerText = lazyReplies[lazyCount].title;
+                desc.innerText = lazyReplies[lazyCount].desc;
+                btn.innerText = lazyReplies[lazyCount].btn;
+                lazyCount++;
+            } else {
+                btn.style.display = 'none';
+                title.innerText = "Gak Ada Alasan Lagi! 😤❤️";
+                desc.innerText = "Tombol nundanya udah hilang! Klik tombol pink di atas kalau kamu beneran udah mandi dan wangi!";
+            }
+        }
 
-  const percent = (filled / 6) * 100;
-  document.getElementById("progressBar").style.width = percent + "%";
-}
-inputs.forEach(i => i.addEventListener("input", updateProgress));
-inputs.forEach(i => i.addEventListener("change", updateProgress));
+        function claimAward() {
+            document.getElementById('warningCard').style.display = 'none';
+            document.getElementById('awardCard').style.display = 'block';
+            
+            const now = new Date();
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
+            document.getElementById('timeText').innerText = "Disahkan pada: " + now.toLocaleDateString('id-ID', options);
 
-// Submit Logic
-document.getElementById("formHobi").addEventListener("submit", async (e) => {
-  e.preventDefault();
-  
-  let hobi = Array.from(document.querySelectorAll('input[name="hobi"]:checked')).map(el => el.value);
-  if (lainnyaCheck.checked && lainnyaInput.value) hobi.push(lainnyaInput.value);
+            fireConfetti();
+        }
 
-  document.getElementById("submitBtn").classList.add("hidden");
-  document.getElementById("loading").classList.remove("hidden");
-
-  try {
-    await addDoc(collection(db, "hobi"), {
-      nama: document.getElementById("nama").value,
-      semester: document.getElementById("semester").value,
-      hobi,
-      minat: document.getElementById("minat").value,
-      tujuan: document.getElementById("tujuan").value,
-      ideEvent: document.getElementById("ideEvent").value,
-      waktu: new Date()
-    });
-    alert("Berhasil Terkirim! 🚀");
-    location.reload();
-  } catch (err) {
-    alert("Gagal kirim.");
-    document.getElementById("submitBtn").classList.remove("hidden");
-    document.getElementById("loading").classList.add("hidden");
-  }
-});
-
-// SECRET ROCKET LOGIC (Klik 5x)
-let clickCount = 0;
-const rocketTrigger = document.getElementById("secretRocket");
-rocketTrigger.addEventListener("click", () => {
-  clickCount++;
-  if (clickCount >= 5) {
-    window.location.href = "admin-7x92-hidden.html";
-  }
-  // Reset jika tidak klik dalam 2 detik
-  setTimeout(() => { clickCount = 0; }, 2000);
-});
-</script>
-
+        function fireConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 }
+            });
+        }
+    </script>
 </body>
 </html>
